@@ -1,6 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import { useEffect } from 'react'
+import qs from 'querystring'
 import Modal from 'components/Modal'
 import { BASE_URL, CLIENT_ID, REDIRECT_URI } from 'config'
 import axios, { AxiosResponse } from 'axios'
@@ -27,7 +28,7 @@ const KakaoLoginContainer: React.FC = () => {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
         },
         url: kakaoUrl,
-        data: JSON.stringify(data),
+        data: qs.stringify(data),
       })
       console.log(res)
       localStorage.setItem('data', JSON.stringify(res.data))
