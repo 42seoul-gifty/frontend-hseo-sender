@@ -1,11 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import modalReducer from 'store/reducers/modal'
-import todoReducer from 'store/reducers/todos'
+import todoReducer from 'store/reducers/orders'
 import { watcherSaga } from './sagas/rootSaga'
 
 export const rootReducer = combineReducers({
-  todos: todoReducer,
+  orders: todoReducer,
   modal: modalReducer,
 })
 

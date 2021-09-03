@@ -1,39 +1,37 @@
 import axios from 'axios'
 import { BASE_URL, SORT_OPTION } from 'config'
-import { toggleObject } from './actions/todos'
+import { newOrder, toggleObject } from './actions/orders'
 
-export const requestGetTodos = () => {
+export const requestGetOrders = () => {
   return axios.request({
     method: 'get',
-    url: `${BASE_URL}/todo?_sort=${SORT_OPTION}`,
+    url: `${BASE_URL}/orders`,
   })
 }
 
-export const requestPostTodo = (text: string) => {
+export const requestPostOrder = (object: newOrder) => {
   return axios.request({
     method: 'post',
-    url: `${BASE_URL}/todo`,
+    url: `${BASE_URL}/orders`,
     data: {
-      content: text,
-      isChecked: false,
-      createdAt: new Date(),
+      ...object,
     },
   })
 }
 
-export const requestPatchTodo = (object: toggleObject) => {
+export const requestPatchOrder = (object: toggleObject) => {
   return axios.request({
     method: 'patch',
-    url: `${BASE_URL}/todo/${object.id}`,
+    url: `${BASE_URL}/orders/${object.id}`,
     data: {
       isChecked: object.isChecked,
     },
   })
 }
 
-export const requestDeletTodo = (id: string) => {
+export const requestDeleteOrder = (id: string) => {
   return axios.request({
     method: 'delete',
-    url: `${BASE_URL}/todo/${id}`,
+    url: `${BASE_URL}/orders/${id}`,
   })
 }

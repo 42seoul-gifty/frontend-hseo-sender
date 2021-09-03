@@ -1,11 +1,12 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import Modal from 'components/Modal'
+import LoginView from 'components/LoginView'
 
 const LoginContainer: React.FC = () => {
   return (
     <div css={Container}>
-      로그인
+      <LoginView />
       <Modal />
     </div>
   )
