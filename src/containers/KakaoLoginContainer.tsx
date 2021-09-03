@@ -23,6 +23,7 @@ const KakaoLoginContainer: React.FC = () => {
       const res: AxiosResponse = await axios({
         method: 'POST',
         headers: {
+          Authorization: '0dd7f9a59b2d4d7cb34f6a6a4e441246',
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
         },
         url: kakaoUrl,
