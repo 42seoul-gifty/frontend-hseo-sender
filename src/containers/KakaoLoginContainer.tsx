@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import { useEffect } from 'react'
 import Modal from 'components/Modal'
 import { BASE_URL, CLIENT_ID, REDIRECT_URI } from 'config'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
 const KakaoLoginContainer: React.FC = () => {
   useEffect(() => {
@@ -20,13 +20,21 @@ const KakaoLoginContainer: React.FC = () => {
     }
 
     const getToken = async (code: string) => {
-      const res = await axios.post(kakaoUrl, data)
+      const res: AxiosResponse = await axios({
+        method: 'POST',
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
+        url: kakaoUrl,
+        data: data,
+      })
       console.log(res)
+      localStorage.setItem('data', JSON.stringify(res.data))
       return res
     }
 
     getToken(code)
-    window.location.assign('/main')
+    //window.location.assign('/main')
   }, [])
 
   return (
