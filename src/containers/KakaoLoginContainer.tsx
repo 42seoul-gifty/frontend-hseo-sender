@@ -26,7 +26,7 @@ const KakaoLoginContainer: React.FC = () => {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
         },
         url: kakaoUrl,
-        data: data,
+        data: JSON.stringify(data),
       })
       console.log(res)
       localStorage.setItem('data', JSON.stringify(res.data))
