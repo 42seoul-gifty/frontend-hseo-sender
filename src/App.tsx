@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import MainContainer from 'containers/MainContainer'
+import SentListContainer from 'containers/SentListContainer'
+import LoginContainer from 'containers/LoginContainer'
+import GiftContainer from 'containers/GiftContainer'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Switch>
+        <Route path="/main" exact component={MainContainer} />
+        <Route path="/gift" component={GiftContainer} />
+        <Route path="/sent" exact component={SentListContainer} />
+        <Route path="/" exact component={LoginContainer} />
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
