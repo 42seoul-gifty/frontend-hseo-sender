@@ -3,9 +3,11 @@ import { css } from '@emotion/react'
 import Modal from 'components/Modal'
 
 const KakaoLoginContainer: React.FC = () => {
+  const code = new URL(window.location.href).searchParams.get('code')
+
   return (
     <div css={Container}>
-      카카오 redirected
+      <h1>카카오 redirected {code}</h1>
       <Modal />
     </div>
   )
