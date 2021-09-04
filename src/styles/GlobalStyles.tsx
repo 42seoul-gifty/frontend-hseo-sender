@@ -40,7 +40,7 @@ export const FlexCenter = css`
 export const FlexColCenter = css`
   ${FlexCenter}
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
 `
 
 export const ButtonDefault = css`
@@ -85,6 +85,12 @@ export const GlobalStyles = css`
   #root {
     height: 100vh;
     width: 100vw;
-    ${FlexColCenter}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @font-face {
+    font-family: Arista Pro Alternate Regular;
+    src: url('/assets/font/Arista-Pro-Alternate-Regular-trial.ttf');
   }
 `

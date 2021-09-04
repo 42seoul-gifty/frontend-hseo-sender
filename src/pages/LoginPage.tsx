@@ -13,11 +13,11 @@ const LoginPage: React.FC = () => {
 export default LoginPage
 
 const Container = css`
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
-  max-width: 1256px;
+  max-width: 768px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 `

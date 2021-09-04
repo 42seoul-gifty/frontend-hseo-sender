@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { useHistory } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
+import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import { setOrderInfo } from 'store/actions/order'
 import { showWarningModal } from 'store/actions/modal'
@@ -33,8 +34,9 @@ const SenderInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
 
   return (
     <div css={Container}>
-      보내는 사람 정보
-      <form onSubmit={handleSubmit}>
+      <div>보내는 분의 정보를 알려주세요</div>
+      <div>이름과 연락처를 확인해 주세요</div>
+      <form css={InputForm} onSubmit={handleSubmit}>
         <input
           type="text"
           onChange={handleChange}
@@ -47,11 +49,12 @@ const SenderInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
           value={order.giver_phone}
           name="giver_phone"
         />
-
-        <button type="button" onClick={() => history.push('/main')}>
-          이전으로
-        </button>
-        <button type="submit">다음단계</button>
+        <section css={BeforeNextButtonSection}>
+          <button type="button" onClick={() => history.push('/main')}>
+            이전으로
+          </button>
+          <button type="submit">다음단계</button>
+        </section>
       </form>
       <Modal>
         <h1>error</h1>
@@ -63,11 +66,21 @@ const SenderInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
 export default SenderInfo
 
 const Container = css`
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
-  max-width: 1256px;
+  max-width: 768px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  font-size: ${FONT_SIZE_STYLE.large};
+  margin-top: 40px;
+`
+const InputForm = css`
+  ${FlexColCenter}
+  margin-top: 40px;
+`
+const BeforeNextButtonSection = css`
+  ${FlexCenter}
+  margin-top: 30px;
 `

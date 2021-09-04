@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { css } from '@emotion/react'
 import { AiOutlineUser } from 'react-icons/ai'
-import { ButtonDefault } from 'styles/GlobalStyles'
+import { ButtonDefault, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import Modal from 'components/Modal'
 import { showMyPageModal } from 'store/actions/modal'
 
@@ -21,14 +21,19 @@ const MainPage: React.FC = () => {
 
   return (
     <div css={Container}>
-      main
-      <button css={ButtonDefault} onClick={() => handleMenuButtonClick('gift')}>
+      <button
+        css={MainMenuButton}
+        onClick={() => handleMenuButtonClick('gift')}
+      >
         선물하기
       </button>
-      <button css={ButtonDefault} onClick={() => handleMenuButtonClick('sent')}>
+      <button
+        css={MainMenuButton}
+        onClick={() => handleMenuButtonClick('sent')}
+      >
         보낸 선물 리스트
       </button>
-      <button css={ButtonDefault} onClick={myMenuButtonClick}>
+      <button css={MainMenuButton} onClick={myMenuButtonClick}>
         <AiOutlineUser />
       </button>
       <Modal>
@@ -41,11 +46,21 @@ const MainPage: React.FC = () => {
 export default MainPage
 
 const Container = css`
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
-  max-width: 1256px;
+  max-width: 768px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  font-size: ${FONT_SIZE_STYLE.large};
+`
+const MainMenuButton = css`
+  ${ButtonDefault}
+  font-size: ${FONT_SIZE_STYLE.large};
+  background-color: #4a847a;
+  color: white;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 6px;
 `

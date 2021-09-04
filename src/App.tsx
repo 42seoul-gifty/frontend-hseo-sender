@@ -6,10 +6,12 @@ import LoginPage from 'pages/LoginPage'
 import KakaoLoginPage from 'pages/KakaoLoginPage'
 
 import GiftPage from 'pages/GiftPage'
+import Header from 'components/Header'
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Switch>
         <Route path="/main" exact component={MainPage} />
         <Route path="/sent" exact component={SentListPage} />
