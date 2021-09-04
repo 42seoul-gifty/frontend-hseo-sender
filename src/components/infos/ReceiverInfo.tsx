@@ -1,5 +1,4 @@
-import React, { useState, Dispatch, SetStateAction } from 'react'
-import { useHistory } from 'react-router'
+import React, { Dispatch, SetStateAction } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { RootState } from 'store/configureStore'

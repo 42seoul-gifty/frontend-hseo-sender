@@ -1,5 +1,4 @@
-import React, { useState, Dispatch, SetStateAction } from 'react'
-import { useHistory } from 'react-router'
+import React, { Dispatch, SetStateAction } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { RootState } from 'store/configureStore'
@@ -10,6 +9,8 @@ import {
 } from 'store/actions/modal'
 import { setOrderInfo } from 'store/actions/order'
 import Modal from 'components/Modal'
+import Select from 'components/inputs/Select'
+import { ageSelections, genderSelections, priceSelections } from 'config'
 
 interface IProps {
   pageState: string
@@ -35,22 +36,23 @@ const GiftInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
   }
 
   const modalType = () => {
-    if (modal.showAgeModal) return <h1>age</h1>
-    if (modal.showPriceModal) return <h1>price</h1>
+    if (modal.showAgeModal)
+      return <Select keyword="age" selections={ageSelections} />
+    if (modal.showPriceModal)
+      return <Select keyword="price" selections={priceSelections} />
     if (modal.showWarningModal) return <h1>error</h1>
   }
 
   return (
     <div css={Container}>
       선물 정보
-      <button type="button" onClick={() => handleGenderButton('male')}>
-        남성
+      <Select keyword="gender" selections={genderSelections} />
+      <button onClick={() => dispatch(showAgeModal())}>
+        {order.age ? order.age : '연령'}
       </button>
-      <button type="button" onClick={() => handleGenderButton('female')}>
-        여성
+      <button onClick={() => dispatch(showPriceModal())}>
+        {order.price ? order.price : '가격'}
       </button>
-      <button onClick={() => dispatch(showAgeModal())}>연령</button>
-      <button onClick={() => dispatch(showPriceModal())}>가격</button>
       <button type="button" onClick={() => setPageState('receiver')}>
         이전으로
       </button>
