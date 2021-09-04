@@ -1,20 +1,20 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
+//import createSagaMiddleware from 'redux-saga'
 import modalReducer from 'store/reducers/modal'
-import todoReducer from 'store/reducers/orders'
-import { watcherSaga } from './sagas/rootSaga'
+import orderReducer from 'store/reducers/order'
+//import { watcherSaga } from './sagas/rootSaga'
 
 export const rootReducer = combineReducers({
-  orders: todoReducer,
+  order: orderReducer,
   modal: modalReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>
 
-const sagaMiddleware = createSagaMiddleware()
-const middleware = [sagaMiddleware]
-const store = createStore(rootReducer, {}, applyMiddleware(...middleware))
+//const sagaMiddleware = createSagaMiddleware()
+//const middleware = [sagaMiddleware]
+const store = createStore(rootReducer)
 
-sagaMiddleware.run(watcherSaga)
+//sagaMiddleware.run(watcherSaga)
 
 export default store

@@ -1,17 +1,24 @@
 import React from 'react'
 import { css } from '@emotion/react'
+import { useEffect } from 'react'
 import Modal from 'components/Modal'
 
-const GiftContainer: React.FC = () => {
+const KakaoLoginPage: React.FC = () => {
+  const code = new URL(window.location.href).searchParams.get('code')
+
+  useEffect(() => {
+    window.location.assign('/main')
+  }, [])
+
   return (
     <div css={Container}>
-      선물하기
+      <h1>카카오 redirected {code}</h1>
       <Modal />
     </div>
   )
 }
 
-export default GiftContainer
+export default KakaoLoginPage
 
 const Container = css`
   width: 60%;

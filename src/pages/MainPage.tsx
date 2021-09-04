@@ -7,7 +7,7 @@ import { ButtonDefault } from 'styles/GlobalStyles'
 import Modal from 'components/Modal'
 import { showModal } from 'store/actions/modal'
 
-const MainContainer: React.FC = () => {
+const MainPage: React.FC = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
@@ -36,7 +36,7 @@ const MainContainer: React.FC = () => {
   )
 }
 
-export default MainContainer
+export default MainPage
 
 const Container = css`
   width: 60%;

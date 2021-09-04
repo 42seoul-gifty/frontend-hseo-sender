@@ -2,7 +2,7 @@ import React from 'react'
 import { css } from '@emotion/react'
 import Modal from 'components/Modal'
 
-const SentListContainer: React.FC = () => {
+const SentListPage: React.FC = () => {
   return (
     <div css={Container}>
       보낸선물 리스트
@@ -11,7 +11,7 @@ const SentListContainer: React.FC = () => {
   )
 }
 
-export default SentListContainer
+export default SentListPage
 
 const Container = css`
   width: 60%;

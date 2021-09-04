@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import Modal from 'components/Modal'
 import LoginView from 'components/LoginView'
 
-const LoginContainer: React.FC = () => {
+const LoginPage: React.FC = () => {
   return (
     <div css={Container}>
       <LoginView />
@@ -12,7 +12,7 @@ const LoginContainer: React.FC = () => {
   )
 }
 
-export default LoginContainer
+export default LoginPage
 
 const Container = css`
   width: 60%;
