@@ -6,7 +6,10 @@ import { BOX_STYLE, COLOR_STYLE, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import { hideModal } from 'store/actions/modal'
 
-const Modal: React.FC = () => {
+interface IProps {
+  children: React.ReactNode
+}
+const Modal: React.FC<IProps> = ({ children }) => {
   const dispatch = useDispatch()
   const modal = useSelector((state: RootState) => state.modal)
 
@@ -18,14 +21,17 @@ const Modal: React.FC = () => {
     <>
       <div css={Dimmer} onClick={handleClose}>
         <div css={ModalWrapper} onClick={(e) => e.stopPropagation()}>
-          <span css={ModalMessage}>{modal.title}</span>
+          {children}
           <button onClick={handleClose}>x</button>
         </div>
       </div>
     </>
   )
 
-  return modal.show
+  return modal.showAgeModal ||
+    modal.showMyPageModal ||
+    modal.showPriceModal ||
+    modal.showWarningModal
     ? ReactDOM.createPortal(
         modalComponent,
         document.querySelector('#modal-root') as HTMLElement,

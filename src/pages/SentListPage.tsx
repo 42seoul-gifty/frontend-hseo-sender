@@ -1,14 +1,8 @@
 import React from 'react'
 import { css } from '@emotion/react'
-import Modal from 'components/Modal'
 
 const SentListPage: React.FC = () => {
-  return (
-    <div css={Container}>
-      보낸선물 리스트
-      <Modal />
-    </div>
-  )
+  return <div css={Container}>보낸선물 리스트</div>
 }
 
 export default SentListPage

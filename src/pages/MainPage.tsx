@@ -5,7 +5,7 @@ import { css } from '@emotion/react'
 import { AiOutlineUser } from 'react-icons/ai'
 import { ButtonDefault } from 'styles/GlobalStyles'
 import Modal from 'components/Modal'
-import { showModal } from 'store/actions/modal'
+import { showMyPageModal } from 'store/actions/modal'
 
 const MainPage: React.FC = () => {
   const history = useHistory()
@@ -16,7 +16,7 @@ const MainPage: React.FC = () => {
   }
 
   const myMenuButtonClick = () => {
-    dispatch(showModal('user my page'))
+    dispatch(showMyPageModal())
   }
 
   return (
@@ -31,7 +31,9 @@ const MainPage: React.FC = () => {
       <button css={ButtonDefault} onClick={myMenuButtonClick}>
         <AiOutlineUser />
       </button>
-      <Modal />
+      <Modal>
+        <h1>my page</h1>
+      </Modal>
     </div>
   )
 }

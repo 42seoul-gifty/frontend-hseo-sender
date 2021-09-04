@@ -3,7 +3,11 @@ import { useHistory } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { RootState } from 'store/configureStore'
-import { showModal } from 'store/actions/modal'
+import {
+  showAgeModal,
+  showWarningModal,
+  showPriceModal,
+} from 'store/actions/modal'
 import { setOrderInfo } from 'store/actions/order'
 import Modal from 'components/Modal'
 
@@ -14,12 +18,13 @@ interface IProps {
 
 const GiftInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
   const order = useSelector((state: RootState) => state.order)
+  const modal = useSelector((state: RootState) => state.modal)
   const dispatch = useDispatch()
 
   console.log(order)
   const handleNext = () => {
-    if (!order.receiver_name || !order.receiver_phone) {
-      dispatch(showModal('이름과 전화번호를 입력해주세요'))
+    if (!order.age || !order.price) {
+      dispatch(showWarningModal())
       return
     }
     setPageState('overall')
@@ -27,6 +32,12 @@ const GiftInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
 
   const handleGenderButton = (gender: string) => {
     dispatch(setOrderInfo({ key: 'gender', value: gender }))
+  }
+
+  const modalType = () => {
+    if (modal.showAgeModal) return <h1>age</h1>
+    if (modal.showPriceModal) return <h1>price</h1>
+    if (modal.showWarningModal) return <h1>error</h1>
   }
 
   return (
@@ -38,13 +49,15 @@ const GiftInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
       <button type="button" onClick={() => handleGenderButton('female')}>
         여성
       </button>
+      <button onClick={() => dispatch(showAgeModal())}>연령</button>
+      <button onClick={() => dispatch(showPriceModal())}>가격</button>
       <button type="button" onClick={() => setPageState('receiver')}>
         이전으로
       </button>
       <button type="button" onClick={handleNext}>
         다음단계
       </button>
-      <Modal />
+      <Modal>{modalType()}</Modal>
     </div>
   )
 }

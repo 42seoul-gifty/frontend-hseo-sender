@@ -5,7 +5,7 @@ import { css } from '@emotion/react'
 import { RootState } from 'store/configureStore'
 import ContactInput from 'components/inputs/ContactInput'
 import { setOrderInfo } from 'store/actions/order'
-import { showModal } from 'store/actions/modal'
+import { showWarningModal } from 'store/actions/modal'
 import Modal from 'components/Modal'
 
 interface IProps {
@@ -22,7 +22,7 @@ const SenderInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!order.giver_name || !order.giver_phone) {
-      dispatch(showModal('이름과 전화번호를 입력해주세요'))
+      dispatch(showWarningModal())
       return
     }
     setPageState('receiver')
@@ -54,7 +54,9 @@ const SenderInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
         </button>
         <button type="submit">다음단계</button>
       </form>
-      <Modal />
+      <Modal>
+        <h1>error</h1>
+      </Modal>
     </div>
   )
 }
