@@ -7,6 +7,7 @@ import { RootState } from 'store/configureStore'
 import { setOrderInfo } from 'store/actions/order'
 import { showWarningModal } from 'store/actions/modal'
 import Modal from 'components/Modal'
+import { phoneNumberRegex } from 'config'
 
 interface IProps {
   pageState: string
@@ -22,6 +23,10 @@ const SenderInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!order.giver_name || !order.giver_phone) {
+      dispatch(showWarningModal())
+      return
+    }
+    if (!order.giver_phone.match(phoneNumberRegex)) {
       dispatch(showWarningModal())
       return
     }
@@ -67,6 +72,7 @@ export default SenderInfo
 
 const Container = css`
   width: 100%;
+  height: 100%;
   margin: 0 auto;
   max-width: 768px;
   display: flex;

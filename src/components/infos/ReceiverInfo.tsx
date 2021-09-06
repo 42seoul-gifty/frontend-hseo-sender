@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { FONT_SIZE_STYLE, FlexColCenter, FlexCenter } from 'styles/GlobalStyles'
+import { phoneNumberRegex } from 'config'
 import { RootState } from 'store/configureStore'
 import { setOrderInfo } from 'store/actions/order'
 import { showWarningModal } from 'store/actions/modal'
@@ -20,6 +21,10 @@ const ReceiverInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!order.receiver_name || !order.receiver_phone) {
+      dispatch(showWarningModal())
+      return
+    }
+    if (!order.receiver_phone.match(phoneNumberRegex)) {
       dispatch(showWarningModal())
       return
     }

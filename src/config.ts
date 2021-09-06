@@ -37,3 +37,5 @@ export const priceSelections = [
 ]
 
 export const genderSelections = ['남성', '여성']
+
+export const phoneNumberRegex = /^\d{11}$/

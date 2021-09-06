@@ -32,5 +32,4 @@ const HeaderTitle = css`
   color: #4a847a;
   padding-top: 5%;
   padding-bottom: 5%;
-  margin-top: 30%;
 `

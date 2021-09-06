@@ -81,6 +81,8 @@ export const GlobalStyles = css`
     background-color: ${COLOR_STYLE.white};
     font-size: 62.5%; // 1rem = 10px
     font-family: sans-serif;
+    height: 100vh;
+    width: 100vw;
   }
   #root {
     height: 100vh;
