@@ -32,6 +32,15 @@ const OverallInfo: React.FC = () => {
     dispatch(setPageInfo('product'))
   }
 
+  const handlePayment = async () => {
+    try {
+      const res = await axios.post(`${BASE_URL}/orders`, order)
+      console.log(res)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <div css={Container}>
       선물 정보 확인
@@ -57,7 +66,7 @@ const OverallInfo: React.FC = () => {
       <button onClick={handleGiftCheck}>발송 선물 확인하기</button>
       <section css={BeforeNextButtonSection}>
         <button onClick={() => dispatch(setPageInfo('gift'))}>이전으로</button>
-        <button>결제하기</button>
+        <button onClick={handlePayment}>결제하기</button>
       </section>
     </div>
   )

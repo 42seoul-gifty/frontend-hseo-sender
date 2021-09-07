@@ -1,14 +1,17 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { css } from '@emotion/react'
 import { AiOutlineUser } from 'react-icons/ai'
 import { ButtonDefault, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
+import { RootState } from 'store/configureStore'
 import Modal from 'components/Modal'
+import MyPage from 'components/MyPage'
 import { showMyPageModal } from 'store/actions/modal'
 
 const MainPage: React.FC = () => {
   const history = useHistory()
+  const modal = useSelector((state: RootState) => state.modal)
   const dispatch = useDispatch()
 
   const handleMenuButtonClick = (menu: string) => {
@@ -17,6 +20,12 @@ const MainPage: React.FC = () => {
 
   const myMenuButtonClick = () => {
     dispatch(showMyPageModal())
+  }
+
+  const modalType = () => {
+    if (modal.showMyPageModal) return <MyPage />
+    if (modal.showPolicyModal) return <div>이용약관</div>
+    if (modal.showPrivacyModal) return <div>정보보안규약</div>
   }
 
   return (
@@ -36,9 +45,7 @@ const MainPage: React.FC = () => {
       <button css={MainMenuButton} onClick={myMenuButtonClick}>
         <AiOutlineUser />
       </button>
-      <Modal>
-        <h1>my page</h1>
-      </Modal>
+      <Modal>{modalType()}</Modal>
     </div>
   )
 }

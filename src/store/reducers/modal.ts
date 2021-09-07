@@ -4,6 +4,8 @@ import {
   SHOW_AGE_MODAL,
   SHOW_PRICE_MODAL,
   SHOW_MYPAGE_MODAL,
+  SHOW_POLICY_MODAL,
+  SHOW_PRIVACY_MODAL,
   HIDE_MODAL,
 } from 'store/actions/modal'
 
@@ -12,6 +14,8 @@ const initialState = {
   showAgeModal: false,
   showPriceModal: false,
   showMyPageModal: false,
+  showPolicyModal: false,
+  showPrivacyModal: false,
 }
 
 const modalReducer = (state = initialState, action: ModalAction) => {
@@ -24,12 +28,18 @@ const modalReducer = (state = initialState, action: ModalAction) => {
       return { ...state, showPriceModal: true }
     case SHOW_MYPAGE_MODAL:
       return { ...state, showMyPageModal: true }
+    case SHOW_POLICY_MODAL:
+      return { ...state, showPolicyModal: true }
+    case SHOW_PRIVACY_MODAL:
+      return { ...state, showPrivacyModal: true }
     case HIDE_MODAL:
       return {
         showWarningModal: false,
         showMyPageModal: false,
         showAgeModal: false,
         showPriceModal: false,
+        showPolicyModal: false,
+        showPrivacyModal: false,
       }
     default:
       return state
