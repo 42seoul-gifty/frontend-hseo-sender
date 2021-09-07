@@ -5,15 +5,11 @@ import { FONT_SIZE_STYLE, FlexColCenter, FlexCenter } from 'styles/GlobalStyles'
 import { phoneNumberRegex } from 'config'
 import { RootState } from 'store/configureStore'
 import { setOrderInfo } from 'store/actions/order'
+import { setPageInfo } from 'store/actions/page'
 import { showWarningModal } from 'store/actions/modal'
 import Modal from 'components/Modal'
 
-interface IProps {
-  pageState: string
-  setPageState: Dispatch<SetStateAction<string>>
-}
-
-const ReceiverInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
+const ReceiverInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
 
@@ -28,7 +24,7 @@ const ReceiverInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
       dispatch(showWarningModal())
       return
     }
-    setPageState('gift')
+    dispatch(setPageInfo('gift'))
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,7 +49,7 @@ const ReceiverInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
           name="receiver_phone"
         />
         <div css={BeforeNextButtonDiv}>
-          <button type="button" onClick={() => setPageState('sender')}>
+          <button type="button" onClick={() => dispatch(setPageInfo('sender'))}>
             이전으로
           </button>
           <button type="submit">다음단계</button>

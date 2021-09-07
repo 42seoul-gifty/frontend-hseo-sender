@@ -8,16 +8,12 @@ import {
   showWarningModal,
   showPriceModal,
 } from 'store/actions/modal'
+import { setPageInfo } from 'store/actions/page'
 import Modal from 'components/Modal'
 import Select from 'components/inputs/Select'
 import { ageSelections, genderSelections, priceSelections } from 'config'
 
-interface IProps {
-  pageState: string
-  setPageState: Dispatch<SetStateAction<string>>
-}
-
-const GiftInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
+const GiftInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const modal = useSelector((state: RootState) => state.modal)
   const dispatch = useDispatch()
@@ -27,7 +23,7 @@ const GiftInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
       dispatch(showWarningModal())
       return
     }
-    setPageState('overall')
+    dispatch(setPageInfo('overall'))
   }
 
   const modalType = () => {
@@ -53,7 +49,7 @@ const GiftInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
       </section>
 
       <section css={BeforeNextButtonSection}>
-        <button type="button" onClick={() => setPageState('receiver')}>
+        <button type="button" onClick={() => dispatch(setPageInfo('receiver'))}>
           이전으로
         </button>
         <button type="button" onClick={handleNext}>

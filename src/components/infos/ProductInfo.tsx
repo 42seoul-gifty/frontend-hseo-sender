@@ -8,25 +8,21 @@ import {
   PRICE_CATEGORY_INDEX,
 } from 'config'
 import { RootState } from 'store/configureStore'
+import { setPageInfo } from 'store/actions/page'
 import axios from 'axios'
 import { BASE_URL } from 'config'
 
-interface IProps {
-  pageState: string
-  setPageState: Dispatch<SetStateAction<string>>
-}
-
-const ProductInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
+const ProductInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
-
-  console.log(pageState)
 
   return (
     <div css={Container}>
       <section css={ProductInfoSection}>선물 리스트</section>
       <section css={BeforeNextButtonSection}>
-        <button onClick={() => setPageState('overall')}>이전으로</button>
+        <button onClick={() => dispatch(setPageInfo('overall'))}>
+          이전으로
+        </button>
         <button>결제하기</button>
       </section>
     </div>

@@ -8,13 +8,9 @@ import { setOrderInfo } from 'store/actions/order'
 import { showWarningModal } from 'store/actions/modal'
 import Modal from 'components/Modal'
 import { phoneNumberRegex } from 'config'
+import { setPageInfo } from 'store/actions/page'
 
-interface IProps {
-  pageState: string
-  setPageState: Dispatch<SetStateAction<string>>
-}
-
-const SenderInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
+const SenderInfo: React.FC = () => {
   const history = useHistory()
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
@@ -30,7 +26,7 @@ const SenderInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
       dispatch(showWarningModal())
       return
     }
-    setPageState('receiver')
+    dispatch(setPageInfo('receiver'))
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -11,19 +11,19 @@ import {
 import ProductInfo from 'components/infos/ProductInfo'
 
 const GiftPage: React.FC = () => {
-  const [pageState, setPageState] = useState('sender')
+  const page = useSelector((state: RootState) => state.page)
 
-  if (pageState === 'receiver') {
-    return <ReceiverInfo pageState={pageState} setPageState={setPageState} />
-  } else if (pageState === 'gift') {
-    return <GiftInfo pageState={pageState} setPageState={setPageState} />
-  } else if (pageState === 'overall') {
-    return <OverallInfo pageState={pageState} setPageState={setPageState} />
-  } else if (pageState === 'product') {
-    return <ProductInfo pageState={pageState} setPageState={setPageState} />
+  if (page === 'receiver') {
+    return <ReceiverInfo />
+  } else if (page === 'gift') {
+    return <GiftInfo />
+  } else if (page === 'overall') {
+    return <OverallInfo />
+  } else if (page === 'product') {
+    return <ProductInfo />
   }
 
-  return <SenderInfo pageState={pageState} setPageState={setPageState} />
+  return <SenderInfo />
 }
 
 export default GiftPage

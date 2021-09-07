@@ -7,21 +7,15 @@ import {
   AGE_CATEGORY_INDEX,
   PRICE_CATEGORY_INDEX,
 } from 'config'
+import { setPageInfo } from 'store/actions/page'
 import { RootState } from 'store/configureStore'
 import axios from 'axios'
 import { BASE_URL } from 'config'
 
-interface IProps {
-  pageState: string
-  setPageState: Dispatch<SetStateAction<string>>
-}
-
-const OverallInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
+const OverallInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
   const accessToken: string = 'token'
-
-  console.log(pageState)
 
   const handleGiftCheck = async () => {
     const url = `${BASE_URL}/products?gender=${GENDER_CATEGORY_INDEX}&price=${PRICE_CATEGORY_INDEX}&age=${AGE_CATEGORY_INDEX}`
@@ -35,7 +29,7 @@ const OverallInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
     } catch (e) {
       console.log(e)
     }
-    setPageState('product')
+    dispatch(setPageInfo('product'))
   }
 
   return (
@@ -62,7 +56,7 @@ const OverallInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
       </section>
       <button onClick={handleGiftCheck}>발송 선물 확인하기</button>
       <section css={BeforeNextButtonSection}>
-        <button onClick={() => setPageState('gift')}>이전으로</button>
+        <button onClick={() => dispatch(setPageInfo('gift'))}>이전으로</button>
         <button>결제하기</button>
       </section>
     </div>
