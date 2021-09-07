@@ -8,6 +8,7 @@ import {
   GiftInfo,
   OverallInfo,
 } from 'components/infos'
+import ProductInfo from 'components/infos/ProductInfo'
 
 const GiftPage: React.FC = () => {
   const [pageState, setPageState] = useState('sender')
@@ -18,9 +19,9 @@ const GiftPage: React.FC = () => {
     return <GiftInfo pageState={pageState} setPageState={setPageState} />
   } else if (pageState === 'overall') {
     return <OverallInfo pageState={pageState} setPageState={setPageState} />
+  } else if (pageState === 'product') {
+    return <ProductInfo pageState={pageState} setPageState={setPageState} />
   }
-
-  console.log(pageState)
 
   return <SenderInfo pageState={pageState} setPageState={setPageState} />
 }

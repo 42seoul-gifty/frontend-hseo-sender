@@ -12,6 +12,10 @@ export interface Iorder {
   price: string
 }
 
+export const GENDER_CATEGORY_INDEX = 1
+export const PRICE_CATEGORY_INDEX = 1
+export const AGE_CATEGORY_INDEX = 1
+
 export const CLIENT_ID = 'e4c6fc1232c62e4be504c0db75b0f33f'
 export const REDIRECT_URI = 'http://localhost:3000/callback'
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`

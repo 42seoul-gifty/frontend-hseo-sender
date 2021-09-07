@@ -2,7 +2,14 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
+import {
+  GENDER_CATEGORY_INDEX,
+  AGE_CATEGORY_INDEX,
+  PRICE_CATEGORY_INDEX,
+} from 'config'
 import { RootState } from 'store/configureStore'
+import axios from 'axios'
+import { BASE_URL } from 'config'
 
 interface IProps {
   pageState: string
@@ -12,8 +19,24 @@ interface IProps {
 const OverallInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
+  const accessToken: string = 'token'
 
   console.log(pageState)
+
+  const handleGiftCheck = async () => {
+    const url = `${BASE_URL}/products?gender=${GENDER_CATEGORY_INDEX}&price=${PRICE_CATEGORY_INDEX}&age=${AGE_CATEGORY_INDEX}`
+    try {
+      const res = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      console.log(res.data)
+    } catch (e) {
+      console.log(e)
+    }
+    setPageState('product')
+  }
 
   return (
     <div css={Container}>
@@ -37,7 +60,7 @@ const OverallInfo: React.FC<IProps> = ({ pageState, setPageState }) => {
           <span>{order.price}</span>
         </div>
       </section>
-      <button>발송 선물 확인하기</button>
+      <button onClick={handleGiftCheck}>발송 선물 확인하기</button>
       <section css={BeforeNextButtonSection}>
         <button onClick={() => setPageState('gift')}>이전으로</button>
         <button>결제하기</button>
