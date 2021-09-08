@@ -14,7 +14,7 @@ const KakaoLoginPage: React.FC = () => {
           method: 'get',
           url: `${BASE_URL}/login/kakao`,
           headers: {
-            Authorization: code,
+            'Authorization-Code': code,
           },
         })
         console.log(tokenData)
