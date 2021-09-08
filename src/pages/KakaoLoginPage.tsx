@@ -3,10 +3,26 @@ import { css } from '@emotion/react'
 import { useEffect } from 'react'
 import { BASE_URL } from 'config'
 import api from 'api'
+import { getTokenSourceMapRange } from 'typescript'
 
 const KakaoLoginPage: React.FC = () => {
   const code = new URL(window.location.href).searchParams.get('code')
 
+  const getToken = async () => {
+    try {
+      const tokenData = await api({
+        method: 'get',
+        url: `${BASE_URL}/login/kakao`,
+        headers: {
+          'Authorization-Code': code,
+        },
+      })
+      console.log(tokenData)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  /*
   useEffect(() => {
     const getToken = async () => {
       try {
@@ -26,9 +42,10 @@ const KakaoLoginPage: React.FC = () => {
     getToken()
     //window.location.assign('/main')
   }, [])
-
+*/
   return (
     <div css={Container}>
+      {getToken()}
       <h1>카카오 redirected {code}</h1>
     </div>
   )
