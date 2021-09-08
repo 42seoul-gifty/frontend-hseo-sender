@@ -12,7 +12,7 @@ const KakaoLoginPage: React.FC = () => {
       try {
         const tokenData = await axios.get(`${BASE_URL}/login/kakao`, {
           headers: {
-            Authorization: code,
+            'Authorization-code': code,
             withCredentials: true,
           },
         })
