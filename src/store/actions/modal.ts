@@ -6,28 +6,16 @@ export const SHOW_POLICY_MODAL = 'SHOW_POLICY_MODAL' as const
 export const SHOW_PRIVACY_MODAL = 'SHOW_PRIVACY_MODAL' as const
 export const HIDE_MODAL = 'HIDE_MODAL' as const
 
-export const showWarningModal = () => ({
-  type: SHOW_WARNING_MODAL,
-})
+export type ModalType =
+  | typeof SHOW_WARNING_MODAL
+  | typeof SHOW_AGE_MODAL
+  | typeof SHOW_PRICE_MODAL
+  | typeof SHOW_MYPAGE_MODAL
+  | typeof SHOW_POLICY_MODAL
+  | typeof SHOW_PRIVACY_MODAL
 
-export const showAgeModal = () => ({
-  type: SHOW_AGE_MODAL,
-})
-
-export const showPriceModal = () => ({
-  type: SHOW_PRICE_MODAL,
-})
-
-export const showMyPageModal = () => ({
-  type: SHOW_MYPAGE_MODAL,
-})
-
-export const showPolicyModal = () => ({
-  type: SHOW_POLICY_MODAL,
-})
-
-export const showPrivacyModal = () => ({
-  type: SHOW_PRIVACY_MODAL,
+export const showModal = (typename: ModalType) => ({
+  type: typename,
 })
 
 export const hideModal = () => ({
@@ -35,10 +23,5 @@ export const hideModal = () => ({
 })
 
 export type ModalAction =
-  | ReturnType<typeof showWarningModal>
-  | ReturnType<typeof showAgeModal>
-  | ReturnType<typeof showPriceModal>
-  | ReturnType<typeof showMyPageModal>
-  | ReturnType<typeof showPolicyModal>
-  | ReturnType<typeof showPrivacyModal>
+  | ReturnType<typeof showModal>
   | ReturnType<typeof hideModal>

@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import { FlexCenter, FlexColCenter } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import { setOrderInfo } from 'store/actions/order'
-import { showWarningModal } from 'store/actions/modal'
+import { SHOW_WARNING_MODAL, showModal } from 'store/actions/modal'
 import { phoneNumberRegex } from 'config'
 import { setPageInfo } from 'store/actions/page'
 
@@ -21,11 +21,11 @@ const ContactInput: React.FC<IProps> = ({ names, beforeClick, nextPage }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!order[names[0]] || !order[names[1]]) {
-      dispatch(showWarningModal())
+      dispatch(showModal(SHOW_WARNING_MODAL))
       return
     }
     if (!order[names[1]].match(phoneNumberRegex)) {
-      dispatch(showWarningModal())
+      dispatch(showModal(SHOW_WARNING_MODAL))
       return
     }
     dispatch(setPageInfo(nextPage))

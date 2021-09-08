@@ -9,7 +9,7 @@ import Modal from 'components/Modal'
 import MyPage from 'components/MyPage'
 import Policy from 'components/Policy'
 import Privacy from 'components/Privacy'
-import { showMyPageModal } from 'store/actions/modal'
+import { showModal, SHOW_MYPAGE_MODAL } from 'store/actions/modal'
 
 const MainPage: React.FC = () => {
   const history = useHistory()
@@ -21,7 +21,7 @@ const MainPage: React.FC = () => {
   }
 
   const myMenuButtonClick = () => {
-    dispatch(showMyPageModal())
+    dispatch(showModal(SHOW_MYPAGE_MODAL))
   }
 
   const modalType = () => {

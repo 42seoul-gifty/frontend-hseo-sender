@@ -4,9 +4,10 @@ import { css } from '@emotion/react'
 import { FONT_SIZE_STYLE, FlexCenter, FlexColCenter } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import {
-  showAgeModal,
-  showWarningModal,
-  showPriceModal,
+  showModal,
+  SHOW_AGE_MODAL,
+  SHOW_PRICE_MODAL,
+  SHOW_WARNING_MODAL,
 } from 'store/actions/modal'
 import { setPageInfo } from 'store/actions/page'
 import Modal from 'components/Modal'
@@ -20,7 +21,7 @@ const GiftInfo: React.FC = () => {
 
   const handleNext = () => {
     if (!order.age || !order.price) {
-      dispatch(showWarningModal())
+      dispatch(showModal(SHOW_WARNING_MODAL))
       return
     }
     dispatch(setPageInfo('overall'))
@@ -41,10 +42,10 @@ const GiftInfo: React.FC = () => {
 
       <section css={SelectionSection}>
         <Select keyword="gender" selections={genderSelections} />
-        <button onClick={() => dispatch(showAgeModal())}>
+        <button onClick={() => dispatch(showModal(SHOW_AGE_MODAL))}>
           {order.age ? order.age : '연령'}
         </button>
-        <button onClick={() => dispatch(showPriceModal())}>
+        <button onClick={() => dispatch(showModal(SHOW_PRICE_MODAL))}>
           {order.price ? order.price : '가격'}
         </button>
       </section>
