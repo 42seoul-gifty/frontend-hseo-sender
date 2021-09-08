@@ -12,8 +12,9 @@ const KakaoLoginPage: React.FC = () => {
 
   const getToken = async () => {
     try {
-      const res1 = await axios.get(`${BASE_URL}/ages`)
+      const res1 = await api.get(`${BASE_URL}/ages`)
 
+      // kakao login token 요청
       /*
       const result = await axios({
         method: 'post',
@@ -37,8 +38,7 @@ const KakaoLoginPage: React.FC = () => {
           'Authorization-Code': `${code}`,
         },
       })
-      */
-
+*/
       console.log(res1)
     } catch (e) {
       console.log(e)

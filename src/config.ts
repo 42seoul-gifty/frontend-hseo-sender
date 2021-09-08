@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://hokim.gifty4u.com'
+export const BASE_URL = 'https://hokim.gifty4u.com'
 //export const BASE_URL = 'https://gifty-mockserver.herokuapp.com'
 
 export const SORT_OPTION = 'createdAt&_order=DESC'
