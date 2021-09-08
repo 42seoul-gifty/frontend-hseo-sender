@@ -9,13 +9,17 @@ const KakaoLoginPage: React.FC = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const tokenData = await axios.get(`${BASE_URL}/login/kakao`, {
-        headers: {
-          Authorization: code,
-          withCredentials: true,
-        },
-      })
-      console.log(tokenData.data)
+      try {
+        const tokenData = await axios.get(`${BASE_URL}/login/kakao`, {
+          headers: {
+            Authorization: code,
+            withCredentials: true,
+          },
+        })
+        console.log(tokenData)
+      } catch (e) {
+        console.log(e)
+      }
     }
 
     getToken()
