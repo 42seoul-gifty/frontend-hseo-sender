@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { css } from '@emotion/react'
 import { RootState } from 'store/configureStore'
 import {
   SenderInfo,

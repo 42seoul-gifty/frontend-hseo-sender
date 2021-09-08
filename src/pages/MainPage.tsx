@@ -7,6 +7,8 @@ import { ButtonDefault, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import Modal from 'components/Modal'
 import MyPage from 'components/MyPage'
+import Policy from 'components/Policy'
+import Privacy from 'components/Privacy'
 import { showMyPageModal } from 'store/actions/modal'
 
 const MainPage: React.FC = () => {
@@ -24,8 +26,8 @@ const MainPage: React.FC = () => {
 
   const modalType = () => {
     if (modal.showMyPageModal) return <MyPage />
-    if (modal.showPolicyModal) return <div>이용약관</div>
-    if (modal.showPrivacyModal) return <div>정보보안규약</div>
+    if (modal.showPolicyModal) return <Policy />
+    if (modal.showPrivacyModal) return <Privacy />
   }
 
   return (

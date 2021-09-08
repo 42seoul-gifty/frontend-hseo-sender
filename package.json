@@ -61,5 +61,6 @@
   "devDependencies": {
     "@types/react": "^17.0.19",
     "react-router-dom": "^5.2.1"
-  }
+  },
+  "proxy": "http://gypark.gifty4u.com"
 }

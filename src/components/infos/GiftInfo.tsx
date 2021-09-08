@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { FONT_SIZE_STYLE, FlexCenter, FlexColCenter } from 'styles/GlobalStyles'
@@ -38,6 +38,7 @@ const GiftInfo: React.FC = () => {
     <div css={Container}>
       <div>선물 정보를 알려주세요</div>
       <div>성별, 나이, 금액대를 입력해주세요</div>
+
       <section css={SelectionSection}>
         <Select keyword="gender" selections={genderSelections} />
         <button onClick={() => dispatch(showAgeModal())}>

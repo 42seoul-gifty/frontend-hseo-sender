@@ -3,43 +3,20 @@ import { css } from '@emotion/react'
 import { useEffect } from 'react'
 import { BASE_URL, CLIENT_ID, REDIRECT_URI } from 'config'
 import api from 'api'
-import { getTokenSourceMapRange } from 'typescript'
 import axios from 'axios'
-import querystring from 'querystring'
 
 const KakaoLoginPage: React.FC = () => {
   const code = new URL(window.location.href).searchParams.get('code')
 
   const getToken = async () => {
     try {
-      const res1 = await axios.get(`${BASE_URL}/ages`)
-
-      /*
-      const result = await axios({
-        method: 'post',
-        url: 'https://kauth.kakao.com/oauth/token',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        data: querystring.stringify({
-          grant_type: 'authorization_code',
-          client_id: `${CLIENT_ID}`,
-          redirect_uri: `${REDIRECT_URI}`,
-          code: `${code}`,
-          client_secret: `SCKaF00YOhAslt61IrvuEyFOXnpoMhM7`,
-        }),
-      })
-      */
-
-      /*
-      const tokenData = await axios.get(`${BASE_URL}/login/kakao`, {
+      const tokenData = await axios.get('/login/kakao', {
         headers: {
           'Authorization-Code': `${code}`,
         },
       })
-      */
 
-      console.log(res1)
+      console.log(tokenData)
     } catch (e) {
       console.log(e)
     }

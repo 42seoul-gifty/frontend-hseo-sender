@@ -1,9 +1,10 @@
-export const BASE_URL = 'http://hokim.gifty4u.com'
+export const BASE_URL = 'http://gypark.gifty4u.com'
 //export const BASE_URL = 'https://gifty-mockserver.herokuapp.com'
 
 export const SORT_OPTION = 'createdAt&_order=DESC'
 
 export interface Iorder {
+  [key: string]: string
   giver_name: string
   giver_phone: string
   receiver_name: string

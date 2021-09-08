@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import { FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
 const Header: React.FC = () => {
   return (

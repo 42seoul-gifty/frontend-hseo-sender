@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactDOM, { createPortal } from 'react-dom'
 import { css } from '@emotion/react'
-import { BOX_STYLE, COLOR_STYLE, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
+import { BOX_STYLE, COLOR_STYLE } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import { hideModal } from 'store/actions/modal'
 
@@ -31,7 +31,9 @@ const Modal: React.FC<IProps> = ({ children }) => {
   return modal.showAgeModal ||
     modal.showMyPageModal ||
     modal.showPriceModal ||
-    modal.showWarningModal
+    modal.showWarningModal ||
+    modal.showPolicyModal ||
+    modal.showPrivacyModal
     ? ReactDOM.createPortal(
         modalComponent,
         document.querySelector('#modal-root') as HTMLElement,
@@ -68,9 +70,4 @@ const ModalWrapper = css`
   text-align: center;
   margin: 0;
   padding: 40px 30px;
-`
-
-const ModalMessage = css`
-  color: ${COLOR_STYLE.greyDarkest};
-  font-size: ${FONT_SIZE_STYLE.medium};
 `
