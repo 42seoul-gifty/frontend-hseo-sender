@@ -1,4 +1,5 @@
 export const BASE_URL = 'http://hokim.gifty4u.com'
+//export const BASE_URL = 'https://gifty-mockserver.herokuapp.com'
 
 export const SORT_OPTION = 'createdAt&_order=DESC'
 
@@ -17,7 +18,7 @@ export const PRICE_CATEGORY_INDEX = 1
 export const AGE_CATEGORY_INDEX = 1
 
 export const CLIENT_ID = '77db1d1cdef95abccc65acb9551aa2ca'
-export const REDIRECT_URI = 'https://gifty-hseo.netlify.app/callback/kakao'
+export const REDIRECT_URI = 'http://localhost:3000/callback/kakao'
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
 
 export const ageSelections = [

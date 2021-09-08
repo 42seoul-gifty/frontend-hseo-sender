@@ -35,7 +35,8 @@ const OverallInfo: React.FC = () => {
   const handlePayment = async () => {
     try {
       const res = await axios.post(`${BASE_URL}/orders`, order)
-      console.log(res)
+      const res2 = await axios.get(`${BASE_URL}/orders`)
+      console.log(res2)
     } catch (e) {
       console.log(e)
     }
