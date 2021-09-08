@@ -16,7 +16,7 @@ function App() {
         <Route path="/main" exact component={MainPage} />
         <Route path="/sent" exact component={SentListPage} />
         {/*<Route path="/login/kakao" exact component={KakaoLoginPage} />*/}
-        <Route path="/callback" exact component={KakaoLoginPage} />
+        <Route path="/callback/kakao" exact component={KakaoLoginPage} />
         <Route path="/gift" component={GiftPage} />
         <Route path="/" exact component={LoginPage} />
       </Switch>
