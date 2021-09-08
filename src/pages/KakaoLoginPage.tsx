@@ -1,12 +1,25 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import { useEffect } from 'react'
+import axios from 'axios'
+import { BASE_URL } from 'config'
 
 const KakaoLoginPage: React.FC = () => {
   const code = new URL(window.location.href).searchParams.get('code')
 
   useEffect(() => {
-    window.location.assign('/main')
+    const getToken = async () => {
+      const tokenData = await axios.get(`${BASE_URL}/login/kakao`, {
+        headers: {
+          Authorization: code,
+          withCredentials: true,
+        },
+      })
+      console.log(tokenData.data)
+    }
+
+    getToken()
+    //window.location.assign('/main')
   }, [])
 
   return (
