@@ -45,7 +45,7 @@ const KakaoLoginPage: React.FC = () => {
 */
   return (
     <div css={Container}>
-      {getToken()}
+      <button onClick={getToken}>token</button>
       <h1>카카오 redirected {code}</h1>
     </div>
   )
