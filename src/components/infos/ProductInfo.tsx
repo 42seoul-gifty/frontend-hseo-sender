@@ -14,12 +14,25 @@ const ProductInfo: React.FC = () => {
   const index = useSelector((state: RootState) => state.index)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    //getAgeIndex()
-    //getPriceIndex()
-  }, [])
-
   const accessToken: string | null = localStorage.getItem('access_token')
+
+  useEffect(() => {
+    const fetchGiftCandidate = async () => {
+      const url = `${BASE_URL}/products?gender=1&price=${index.priceIndex}&age=${index.ageIndex}`
+      try {
+        const res = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        console.log(res)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    fetchGiftCandidate()
+  }, [])
 
   return (
     <div css={Container}>
