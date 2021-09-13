@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
@@ -8,38 +8,41 @@ import {
   PRICE_CATEGORY_INDEX,
 } from 'config'
 import { setPageInfo } from 'store/actions/page'
+import { setAgeIndex, setPriceIndex } from 'store/actions'
 import { RootState } from 'store/configureStore'
-import axios from 'axios'
-import { BASE_URL } from 'config'
+import axios, { AxiosResponse } from 'axios'
+import { BASE_URL, ageSelections, priceSelections } from 'config'
+import { SelectType } from './GiftInfo'
 
 const OverallInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
-  const accessToken: string = 'token'
 
-  const handleGiftCheck = async () => {
-    const url = `${BASE_URL}/products?gender=${GENDER_CATEGORY_INDEX}&price=${PRICE_CATEGORY_INDEX}&age=${AGE_CATEGORY_INDEX}`
-    try {
-      const res = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      console.log(res.data)
-    } catch (e) {
-      console.log(e)
-    }
-    dispatch(setPageInfo('product'))
+  const getAgeIndex = () => {
+    const filtered = ageSelections.filter((item) => item.value === order.age)
+    dispatch(setAgeIndex(filtered[0].id))
+  }
+
+  const getPriceIndex = () => {
+    const filtered = priceSelections.filter(
+      (item) => item.value === order.price,
+    )
+    dispatch(setPriceIndex(filtered[0].id))
   }
 
   const handlePayment = async () => {
     try {
-      const res = await axios.post(`${BASE_URL}/orders`, order)
       const res2 = await axios.get(`${BASE_URL}/orders`)
       console.log(res2)
     } catch (e) {
       console.log(e)
     }
+  }
+
+  const handleGiftlistButton = () => {
+    getAgeIndex()
+    getPriceIndex()
+    dispatch(setPageInfo('product'))
   }
 
   return (
@@ -64,7 +67,7 @@ const OverallInfo: React.FC = () => {
           <span>{order.price}</span>
         </div>
       </section>
-      <button onClick={handleGiftCheck}>발송 선물 확인하기</button>
+      <button onClick={handleGiftlistButton}>발송 선물 확인하기</button>
       <section css={BeforeNextButtonSection}>
         <button onClick={() => dispatch(setPageInfo('gift'))}>이전으로</button>
         <button onClick={handlePayment}>결제하기</button>

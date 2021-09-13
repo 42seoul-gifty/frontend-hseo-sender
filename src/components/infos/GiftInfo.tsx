@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { FONT_SIZE_STYLE, FlexCenter, FlexColCenter } from 'styles/GlobalStyles'
@@ -13,11 +13,26 @@ import { setPageInfo } from 'store/actions/page'
 import Modal from 'components/Modal'
 import Select from 'components/inputs/Select'
 import { ageSelections, genderSelections, priceSelections } from 'config'
+import { BASE_URL } from 'config'
+import axios, { AxiosResponse } from 'axios'
+
+export type SelectType = {
+  id: number
+  value: string
+}
+
+export type Selects = {
+  ages: SelectType[]
+  prices: SelectType[]
+}
 
 const GiftInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const modal = useSelector((state: RootState) => state.modal)
   const dispatch = useDispatch()
+
+  const initialSelects: Selects = { ages: [], prices: [] }
+  const [selectionIndex, setSelectionIndex] = useState(initialSelects)
 
   const handleNext = () => {
     if (!order.age || !order.price) {

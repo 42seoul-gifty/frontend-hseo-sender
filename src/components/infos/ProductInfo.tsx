@@ -1,18 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
 import { RootState } from 'store/configureStore'
 import { setPageInfo } from 'store/actions/page'
+import axios, { AxiosResponse } from 'axios'
+import { ageSelections, priceSelections, BASE_URL } from 'config'
+import { SelectType } from './GiftInfo'
 
 const ProductInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
+  const index = useSelector((state: RootState) => state.index)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    //getAgeIndex()
+    //getPriceIndex()
+  }, [])
+
+  const accessToken: string | null = localStorage.getItem('access_token')
 
   return (
     <div css={Container}>
-      <section css={ProductInfoSection}>선물 리스트</section>
+      <section css={ProductInfoSection}>
+        <h1>선물 리스트</h1>
+        {`age: ${index.ageIndex}, price: ${index.priceIndex}`}
+      </section>
       <section css={BeforeNextButtonSection}>
         <button onClick={() => dispatch(setPageInfo('overall'))}>
           이전으로

@@ -1,5 +1,12 @@
-export const SET_ORDER = 'SET_ORDER' as const
+import { SelectType } from 'components/infos/GiftInfo'
 
+export const SET_ORDER = 'SET_ORDER' as const
+/*
+export type SelectionInfo = {
+  id: number
+  value: string
+}
+*/
 export type InfoSet = {
   key: string
   value: string

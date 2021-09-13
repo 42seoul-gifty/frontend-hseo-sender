@@ -1,4 +1,8 @@
-export const BASE_URL = 'http://gypark.gifty4u.com'
+//import { SelectionInfo } from 'store/actions/order'
+
+import { SelectType } from 'components/infos/GiftInfo'
+
+export const BASE_URL = 'http://hokim.gifty4u.com'
 //export const BASE_URL = 'https://gifty-mockserver.herokuapp.com'
 
 export const SORT_OPTION = 'createdAt&_order=DESC'
@@ -22,27 +26,25 @@ export const CLIENT_ID = '77db1d1cdef95abccc65acb9551aa2ca'
 export const REDIRECT_URI = 'http://localhost:3000/callback/kakao'
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
 
-export const ageSelections = [
-  '20~24세',
-  '25~29세',
-  '30~34세',
-  '35~39세',
-  '40~44세',
-  '45세 이상',
+export const ageSelections: SelectType[] = [
+  { id: 1, value: '10' },
+  { id: 2, value: '20' },
+  { id: 3, value: '30' },
+  { id: 4, value: '40' },
 ]
 
-export const priceSelections = [
-  '1만5천원',
-  '2만원',
-  '2만5천원',
-  '3만원',
-  '3만5천원',
-  '4만원',
-  '4만5천원',
-  '5만원',
+export const priceSelections: SelectType[] = [
+  { id: 1, value: '1만5천원' },
+  { id: 2, value: '2만5천원' },
+  { id: 3, value: '3만5천원' },
+  { id: 4, value: '4만5천원' },
 ]
 
-export const genderSelections = ['남성', '여성']
+export const genderSelections: SelectType[] = [
+  { id: 1, value: '남성' },
+  { id: 2, value: '여성' },
+  { id: 3, value: '전체' },
+]
 
 export const phoneNumberRegex = /^\d{11}$/
 

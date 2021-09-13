@@ -1,6 +1,11 @@
 import { Iorder } from 'config'
 import { orderInfoAction, SET_ORDER } from 'store/actions/order'
-
+/*
+const initialSelection: SelectionInfo = {
+  id: 0,
+  value: '',
+}
+*/
 const initialState: Iorder = {
   giver_name: '',
   giver_phone: '',

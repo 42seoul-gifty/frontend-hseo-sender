@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { css } from '@emotion/react'
@@ -15,6 +15,16 @@ const MainPage: React.FC = () => {
   const history = useHistory()
   const modal = useSelector((state: RootState) => state.modal)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    const getIdNickname = () => {
+      const userId = localStorage.getItem('user_id')
+      const nickname = localStorage.getItem('nickname')
+      console.log(userId, nickname)
+    }
+
+    getIdNickname()
+  }, [])
 
   const handleMenuButtonClick = (menu: string) => {
     history.push(`/${menu}`)

@@ -8,22 +8,8 @@ const LoginView: React.FC = () => {
     window.location.assign(KAKAO_AUTH_URL)
   }
 
-  const handleLogin = async () => {
-    try {
-      const res = await axios.post(`${BASE_URL}/login`, {
-        username: 'user1',
-        email: 'email@example.com',
-        password: 'password',
-      })
-      console.log(res)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
   return (
     <div css={Container}>
-      <button onClick={handleLogin}>그냥 로그인</button>
       <button css={ButtonDefault} onClick={handleKakaoLoginButton}>
         <img
           css={KakaoLoginImg}

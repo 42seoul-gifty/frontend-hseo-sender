@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
-import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
+import { FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
 import {
   hideModal,
@@ -25,7 +25,7 @@ const MyPage: React.FC = () => {
 
   return (
     <div css={Container}>
-      <h1>님 안녕하세요!</h1>
+      <h1>{localStorage.getItem('nickname')}님 안녕하세요!</h1>
       <button onClick={() => handleModalButton(SHOW_POLICY_MODAL)}>
         이용약관
       </button>
@@ -47,11 +47,4 @@ const Container = css`
   max-width: 768px;
   font-size: ${FONT_SIZE_STYLE.large};
   margin-top: 40px;
-`
-
-const MyPageSection = css``
-
-const BeforeNextButtonSection = css`
-  ${FlexCenter}
-  margin-top: 30px;
 `

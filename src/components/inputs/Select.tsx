@@ -4,10 +4,11 @@ import { css } from '@emotion/react'
 import { hideModal } from 'store/actions/modal'
 import { setOrderInfo } from 'store/actions/order'
 import { FlexCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
+import { SelectType } from 'components/infos/GiftInfo'
 
 interface IProps {
   keyword: string
-  selections: string[]
+  selections: SelectType[]
 }
 
 const Select: React.FC<IProps> = ({ keyword, selections }) => {
@@ -19,10 +20,10 @@ const Select: React.FC<IProps> = ({ keyword, selections }) => {
         <div>
           <button
             onClick={() =>
-              dispatch(setOrderInfo({ key: keyword, value: option }))
+              dispatch(setOrderInfo({ key: keyword, value: option.value }))
             }
           >
-            {option}
+            {option.value}
           </button>
         </div>
       ))}
