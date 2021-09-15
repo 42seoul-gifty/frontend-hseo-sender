@@ -9,8 +9,3 @@
   $ npm start
 ```
 <br>
-
-## 배포 주소 
-로그인 시험용 임시 배포하였습니다.
-
-  https://gifty-hseo.netlify.app/
