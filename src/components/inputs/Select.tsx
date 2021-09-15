@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { css } from '@emotion/react'
-import { hideModal } from 'store/actions/modal'
 import { setOrderInfo } from 'store/actions/order'
 import { COLOR_STYLE, FlexCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
-import { SelectType } from 'components/infos/GiftInfo'
+import { SelectType } from 'config'
+import { RootState } from 'store/configureStore'
 
 interface IProps {
   keyword: string
@@ -13,24 +13,37 @@ interface IProps {
 
 const Select: React.FC<IProps> = ({ keyword, selections }) => {
   const dispatch = useDispatch()
-  const [clicked, setClicked] = useState<number>(0)
+  const order = useSelector((state: RootState) => state.order)
+  const [clicked, setClicked] = useState<string>(order[keyword])
 
-  const handleClick = (value: string, index: number) => {
-    setClicked(index)
+  const handleClick = (value: string) => {
+    setClicked(value)
     dispatch(setOrderInfo({ key: keyword, value: value }))
   }
-
+  /*
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setOrderInfo({ key: keyword, value: e.target.value }))
+  }
+  */
   return (
     <div css={Container}>
       {selections.map((option) => (
         <button
           key={option.id}
-          css={option.id === clicked ? ButtonSelected : Button}
-          onClick={() => handleClick(option.value, option.id)}
+          css={option.value === clicked ? ButtonSelected : Button}
+          onClick={() => handleClick(option.value)}
         >
           {option.value}
         </button>
       ))}
+
+      {/*
+      <select value={order[keyword]} onChange={handleChange}>
+        {selections.map((option) => (
+          <option value={option.value}>{option.value}</option>
+        ))}
+      </select>
+        */}
     </div>
   )
 }

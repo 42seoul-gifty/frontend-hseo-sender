@@ -12,8 +12,8 @@ import { setPageInfo } from 'store/actions/page'
 import { setAgeIndex, setPriceIndex } from 'store/actions'
 import { RootState } from 'store/configureStore'
 import axios, { AxiosResponse } from 'axios'
-import { BASE_URL, ageSelections, priceSelections } from 'config'
-import { SelectType } from './GiftInfo'
+import { BASE_URL, ageSelections, priceSelections, SelectType } from 'config'
+import { RequestPayParams, RequestPayResponse } from 'iamportTypes'
 
 const OverallInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
@@ -34,6 +34,7 @@ const OverallInfo: React.FC = () => {
   }
 
   const handlePayment = async () => {
+    /*
     const orderData: Iorder = {
       giver_name: order.giver_name,
       giver_phone: order.giver_phone,
@@ -43,20 +44,46 @@ const OverallInfo: React.FC = () => {
       age: order.age,
       price: order.price,
     }
+    const header = {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    }
     try {
-      const res = await axios.post(
-        `${BASE_URL}/users/${id}/orders`,
-        orderData,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      )
+      const res = await axios({
+        method: 'post',
+        url: `${BASE_URL}/users/${id}/orders`,
+        headers: header,
+        data: orderData,
+      })
       console.log(res)
     } catch (e) {
       console.log(e)
     }
+*/
+    window.IMP?.init('iamport')
+    const amount: string =
+      priceSelections
+        .filter((price) => price.value === order.price)
+        .map((price) => price.amount)[0] || '0'
+    if (amount === '0') {
+      alert('결제 금액을 확인해주세요')
+      return
+    }
+    const data: RequestPayParams = {
+      pg: 'html5_inicis',
+      pay_method: 'card',
+      merchant_uid: `mid_${new Date().getTime()}`,
+      amount: amount,
+    }
+    const callback = (response: RequestPayResponse) => {
+      const { success, merchant_uid, error_msg } = response
+      if (success) {
+        console.log(response)
+      } else {
+        console.log(response)
+      }
+    }
+    window.IMP?.request_pay(data, callback)
   }
 
   const handleGiftlistButton = () => {

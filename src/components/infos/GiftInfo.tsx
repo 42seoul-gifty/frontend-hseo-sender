@@ -8,18 +8,8 @@ import { setPageInfo } from 'store/actions/page'
 import Modal from 'components/Modal'
 import Select from 'components/inputs/Select'
 import { ageSelections, genderSelections, priceSelections } from 'config'
-import { BASE_URL } from 'config'
+import { BASE_URL, SelectType, Selects } from 'config'
 import axios, { AxiosResponse } from 'axios'
-
-export type SelectType = {
-  id: number
-  value: string
-}
-
-export type Selects = {
-  ages: SelectType[]
-  prices: SelectType[]
-}
 
 const GiftInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)

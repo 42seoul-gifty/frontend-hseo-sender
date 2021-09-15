@@ -6,8 +6,7 @@ import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import { setPageInfo } from 'store/actions/page'
 import axios, { AxiosResponse } from 'axios'
-import { ageSelections, priceSelections, BASE_URL } from 'config'
-import { SelectType } from './GiftInfo'
+import { ageSelections, priceSelections, BASE_URL, SelectType } from 'config'
 
 interface IProps {
   thumbnail: string

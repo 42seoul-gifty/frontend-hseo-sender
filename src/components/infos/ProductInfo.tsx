@@ -6,8 +6,7 @@ import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import { setPageInfo } from 'store/actions/page'
 import axios, { AxiosResponse } from 'axios'
-import { ageSelections, priceSelections, BASE_URL } from 'config'
-import { SelectType } from './GiftInfo'
+import { ageSelections, priceSelections, BASE_URL, SelectType } from 'config'
 import ProductListView from './ProductListItem'
 
 const ProductInfo: React.FC = () => {
@@ -20,7 +19,7 @@ const ProductInfo: React.FC = () => {
 
   useEffect(() => {
     const fetchGiftCandidate = async () => {
-      const url = `${BASE_URL}/products?gender=남&price=${index.priceIndex}&age=${index.ageIndex}`
+      const url = `${BASE_URL}/products?gender=1&price=${index.priceIndex}&age=${index.ageIndex}`
       try {
         const res = await axios.get(url, {
           headers: {
