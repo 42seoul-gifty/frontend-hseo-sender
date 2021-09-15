@@ -28,9 +28,7 @@ const Modal: React.FC<IProps> = ({ children }) => {
     </>
   )
 
-  return modal.showAgeModal ||
-    modal.showMyPageModal ||
-    modal.showPriceModal ||
+  return modal.showMyPageModal ||
     modal.showWarningModal ||
     modal.showPolicyModal ||
     modal.showPrivacyModal

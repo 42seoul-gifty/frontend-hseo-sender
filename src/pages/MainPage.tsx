@@ -20,7 +20,8 @@ const MainPage: React.FC = () => {
     const getIdNickname = () => {
       const userId = localStorage.getItem('user_id')
       const nickname = localStorage.getItem('nickname')
-      console.log(userId, nickname)
+      const accessToken = localStorage.getItem('access_token')
+      console.log(userId, nickname, accessToken)
     }
 
     getIdNickname()

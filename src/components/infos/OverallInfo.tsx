@@ -6,6 +6,7 @@ import {
   GENDER_CATEGORY_INDEX,
   AGE_CATEGORY_INDEX,
   PRICE_CATEGORY_INDEX,
+  Iorder,
 } from 'config'
 import { setPageInfo } from 'store/actions/page'
 import { setAgeIndex, setPriceIndex } from 'store/actions'
@@ -17,6 +18,8 @@ import { SelectType } from './GiftInfo'
 const OverallInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
+  const id = localStorage.getItem('user_id')
+  const accessToken: string | null = localStorage.getItem('access_token')
 
   const getAgeIndex = () => {
     const filtered = ageSelections.filter((item) => item.value === order.age)
@@ -31,9 +34,26 @@ const OverallInfo: React.FC = () => {
   }
 
   const handlePayment = async () => {
+    const orderData: Iorder = {
+      giver_name: order.giver_name,
+      giver_phone: order.giver_phone,
+      receiver_name: order.receiver_name,
+      receiver_phone: order.receiver_phone,
+      gender: order.gender,
+      age: order.age,
+      price: order.price,
+    }
     try {
-      const res2 = await axios.get(`${BASE_URL}/orders`)
-      console.log(res2)
+      const res = await axios.post(
+        `${BASE_URL}/users/${id}/orders`,
+        orderData,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      )
+      console.log(res)
     } catch (e) {
       console.log(e)
     }

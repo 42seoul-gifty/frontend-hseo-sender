@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { hideModal } from 'store/actions/modal'
 import { setOrderInfo } from 'store/actions/order'
-import { FlexCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
+import { COLOR_STYLE, FlexCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { SelectType } from 'components/infos/GiftInfo'
 
 interface IProps {
@@ -13,23 +13,24 @@ interface IProps {
 
 const Select: React.FC<IProps> = ({ keyword, selections }) => {
   const dispatch = useDispatch()
+  const [clicked, setClicked] = useState<number>(0)
+
+  const handleClick = (value: string, index: number) => {
+    setClicked(index)
+    dispatch(setOrderInfo({ key: keyword, value: value }))
+  }
 
   return (
     <div css={Container}>
       {selections.map((option) => (
-        <div>
-          <button
-            onClick={() =>
-              dispatch(setOrderInfo({ key: keyword, value: option.value }))
-            }
-          >
-            {option.value}
-          </button>
-        </div>
+        <button
+          key={option.id}
+          css={option.id === clicked ? ButtonSelected : Button}
+          onClick={() => handleClick(option.value, option.id)}
+        >
+          {option.value}
+        </button>
       ))}
-      {keyword !== 'gender' && (
-        <button onClick={() => dispatch(hideModal())}>선택 완료</button>
-      )}
     </div>
   )
 }
@@ -43,4 +44,11 @@ const Container = css`
   max-width: 768px;
   font-size: ${FONT_SIZE_STYLE.large};
   margin-top: 40px;
+`
+const ButtonSelected = css`
+  background-color: ${COLOR_STYLE.greyDarkest};
+`
+
+const Button = css`
+  background-color: ${COLOR_STYLE.greyLighter};
 `

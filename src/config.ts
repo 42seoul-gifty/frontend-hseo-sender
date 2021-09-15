@@ -41,15 +41,35 @@ export const priceSelections: SelectType[] = [
 ]
 
 export const genderSelections: SelectType[] = [
-  { id: 1, value: '남성' },
-  { id: 2, value: '여성' },
-  { id: 3, value: '전체' },
+  { id: 1, value: '여성' },
+  { id: 2, value: '남성' },
+  { id: 3, value: '무관' },
 ]
 
 export const phoneNumberRegex = /^\d{11}$/
 
-/*
+/* hokim
 KAKAO_REST_KEY=77db1d1cdef95abccc65acb9551aa2ca
 KAKAO_SECRET=SCKaF00YOhAslt61IrvuEyFOXnpoMhM7
 JavaScript 키dc3f292c57aba867fd4c53fc230d5f79
+
+NAVER_CLIENT_ID=mLmvFPPs5yoVqqmxbBxI
+NAVER_SECRET=S21s7NttLS
+*/
+
+/* gypark
+kakao
+네이티브 앱 키	cd12e3a568f69bd5b41c28a324bb9911
+REST API 키	223fe55510e1365b4eb39c45cca100b5
+JavaScript 키	2f89bf1f614893436b8174d4d3d7a30c
+Admin 키	5acd776a90b977aec1eaf99ad396ca81
+
+naver
+client id: mKeM7aEuG66T0SPMnrw2
+client secret: zN7dGaVF4V
+*/
+
+/* yekim
+KAKAO_REST_KEY=1ba26f09773c4e4473835dabe091a18a
+KAKAO_SECRET=somYpHUEAMXKtci5Me62JOUvgzHKroCz
 */

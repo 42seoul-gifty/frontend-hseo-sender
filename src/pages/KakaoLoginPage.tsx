@@ -32,7 +32,7 @@ const KakaoLoginPage: React.FC = () => {
     }
 
     getToken()
-    //window.location.assign('/main')
+    window.location.assign('/main')
   }, [])
 
   return (
