@@ -21,11 +21,11 @@ const KakaoLoginPage: React.FC = () => {
         const user_id = res.data.user.id
         const nickname = res.data.user.nickname
 
+        //console.log(user_id)
         localStorage.setItem('access_token', access_token)
         localStorage.setItem('refresh_token', refresh_token)
         localStorage.setItem('user_id', user_id)
         localStorage.setItem('nickname', nickname)
-        console.log(user_id, nickname)
       } catch (e) {
         console.log(e)
       }

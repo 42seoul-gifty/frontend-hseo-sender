@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { FONT_SIZE_STYLE, FlexCenter, FlexColCenter } from 'styles/GlobalStyles'
@@ -8,8 +8,6 @@ import { setPageInfo } from 'store/actions/page'
 import Modal from 'components/Modal'
 import Select from 'components/inputs/Select'
 import { ageSelections, genderSelections, priceSelections } from 'config'
-import { BASE_URL, SelectType, Selects } from 'config'
-import axios, { AxiosResponse } from 'axios'
 
 const GiftInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)

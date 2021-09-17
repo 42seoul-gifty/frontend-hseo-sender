@@ -12,19 +12,18 @@ export interface Display {
 
 export interface RequestPayParams extends RequestPayAdditionalParams {
   pg?: string
-  pay_method?: string
+  pay_method: string
   escrow?: boolean
   merchant_uid: string
   name?: string
-  amount: string
+  amount: number
   custom_data?: any
   tax_free?: number
-  vat?: number
   currency?: string
   language?: string
-  buyer_email?: string
   buyer_name?: string
-  buyer_tel?: string
+  buyer_tel: string
+  buyer_email?: string
   buyer_addr?: string
   buyer_postcode?: string
   notice_url?: string | string[]
@@ -41,8 +40,8 @@ export interface RequestPayAdditionalResponse {
 
 export interface RequestPayResponse extends RequestPayAdditionalResponse {
   success: boolean
-  error_code?: string
-  error_msg?: string
+  error_code: string
+  error_msg: string
   imp_uid: string | null
   merchant_uid: string
   pay_method?: string
@@ -55,6 +54,10 @@ export interface RequestPayResponse extends RequestPayAdditionalResponse {
   buyer_email?: string
   buyer_tel?: string
   buyer_addr?: string
+  buyer_postcode?: string
+  custom_data?: any
+  paid_at?: number
+  receipt_url?: string
 }
 
 export type RequestPayResponseCallback = (response: RequestPayResponse) => void

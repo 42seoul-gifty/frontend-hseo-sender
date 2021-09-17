@@ -5,12 +5,11 @@ import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
 import { RootState } from 'store/configureStore'
 import { setPageInfo } from 'store/actions/page'
-import axios, { AxiosResponse } from 'axios'
-import { ageSelections, priceSelections, BASE_URL, SelectType } from 'config'
+import axios from 'axios'
+import { BASE_URL } from 'config'
 import ProductListView from './ProductListItem'
 
 const ProductInfo: React.FC = () => {
-  const order = useSelector((state: RootState) => state.order)
   const index = useSelector((state: RootState) => state.index)
   const dispatch = useDispatch()
   const [productList, setProductList] = useState<any[]>([])
@@ -19,7 +18,7 @@ const ProductInfo: React.FC = () => {
 
   useEffect(() => {
     const fetchGiftCandidate = async () => {
-      const url = `${BASE_URL}/products?gender=1&price=${index.priceIndex}&age=${index.ageIndex}`
+      const url = `${BASE_URL}/products?gender=${index.genderIndex}&price=${index.priceIndex}&age=${index.ageIndex}`
       try {
         const res = await axios.get(url, {
           headers: {
@@ -27,6 +26,7 @@ const ProductInfo: React.FC = () => {
           },
         })
         const data = res.data.data
+        console.log(data)
         setProductList([...data])
         console.log(productList)
       } catch (e) {

@@ -1,9 +1,4 @@
-//import { SelectionInfo } from 'store/actions/order'
-
 export const BASE_URL = 'https://hokim.gifty4u.com'
-//export const BASE_URL = 'https://gifty-mockserver.herokuapp.com'
-
-export const SORT_OPTION = 'createdAt&_order=DESC'
 
 export interface Iorder {
   [key: string]: string
@@ -20,6 +15,7 @@ export const GENDER_CATEGORY_INDEX = 1
 export const PRICE_CATEGORY_INDEX = 1
 export const AGE_CATEGORY_INDEX = 1
 
+//카카오 로그인
 export const CLIENT_ID = '77db1d1cdef95abccc65acb9551aa2ca'
 export const REDIRECT_URI = 'http://localhost:3000/callback/kakao'
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
@@ -27,7 +23,7 @@ export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id
 export type SelectType = {
   id: number
   value: string
-  amount?: string
+  amount?: number
 }
 
 export type Selects = {
@@ -43,10 +39,10 @@ export const ageSelections: SelectType[] = [
 ]
 
 export const priceSelections: SelectType[] = [
-  { id: 1, value: '1만5천원', amount: '15000' },
-  { id: 2, value: '2만5천원', amount: '25000' },
-  { id: 3, value: '3만5천원', amount: '35000' },
-  { id: 4, value: '4만5천원', amount: '45000' },
+  { id: 2, value: '1만5천원', amount: 15000 },
+  { id: 3, value: '2만5천원', amount: 25000 },
+  { id: 4, value: '3만5천원', amount: 35000 },
+  { id: 5, value: '4만5천원', amount: 45000 },
 ]
 
 export const genderSelections: SelectType[] = [
@@ -56,6 +52,12 @@ export const genderSelections: SelectType[] = [
 ]
 
 export const phoneNumberRegex = /^\d{11}$/
+
+//IMP 결제
+export const IMP_CODE = 'imp71394683'
+export const IMP_KEY = 4674594066918237
+export const IMP_SECRET =
+  'GD8sR5tjJeJedchRQg0GtotbwOa0u3obHwEyC7SllBAzNSrE9rlDPOOmCYm71LiJiXiU4agqMR0AJreT'
 
 /* hokim
 KAKAO_REST_KEY=77db1d1cdef95abccc65acb9551aa2ca

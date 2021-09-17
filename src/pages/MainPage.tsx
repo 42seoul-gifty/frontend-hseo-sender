@@ -18,10 +18,9 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     const getIdNickname = () => {
-      const userId = localStorage.getItem('user_id')
-      const nickname = localStorage.getItem('nickname')
-      const accessToken = localStorage.getItem('access_token')
-      console.log(userId, nickname, accessToken)
+      //const userId = localStorage.getItem('user_id')
+      //const nickname = localStorage.getItem('nickname')
+      //const accessToken = localStorage.getItem('access_token')
     }
 
     getIdNickname()

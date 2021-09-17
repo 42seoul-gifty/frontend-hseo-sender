@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
 import { css } from '@emotion/react'
-import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
-
-import { RootState } from 'store/configureStore'
-import { setPageInfo } from 'store/actions/page'
-import axios, { AxiosResponse } from 'axios'
-import { ageSelections, priceSelections, BASE_URL, SelectType } from 'config'
+import { FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
 interface IProps {
   thumbnail: string

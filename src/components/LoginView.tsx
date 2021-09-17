@@ -1,6 +1,5 @@
 import { css } from '@emotion/react'
-import axios from 'axios'
-import { BASE_URL, KAKAO_AUTH_URL } from 'config'
+import { KAKAO_AUTH_URL } from 'config'
 import { ButtonDefault, FlexColCenter } from 'styles/GlobalStyles'
 
 const LoginView: React.FC = () => {
