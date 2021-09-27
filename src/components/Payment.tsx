@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
@@ -10,6 +10,7 @@ import { RootState } from 'store/configureStore'
 import axios from 'axios'
 import { BASE_URL } from 'config'
 import { useHistory } from 'react-router'
+import { setPageInfo } from 'store/actions/page'
 
 export type PaymentData = {
   success: boolean
@@ -25,6 +26,7 @@ const Payment: React.FC = () => {
   const id = localStorage.getItem('user_id')
   const accessToken: string | null = localStorage.getItem('access_token')
   const history = useHistory()
+  const dispatch = useDispatch()
 
   const header = {
     Authorization: `Bearer ${accessToken}`,
@@ -67,6 +69,7 @@ const Payment: React.FC = () => {
           })
           console.log(response)
           alert('주문이 완료되었습니다')
+          dispatch(setPageInfo('sender'))
           history.push(`/main`)
         } catch (e) {
           console.log(error_msg)
