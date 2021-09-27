@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { css } from '@emotion/react'
 import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
-import {
-  Iorder,
-  IMP_CODE,
-  ageSelections,
-  priceSelections,
-  genderSelections,
-} from 'config'
+import { Iorder, IMP_CODE, priceSelections } from 'config'
 
 import { RequestPayParams, RequestPayResponse } from 'iamportTypes'
 import { RootState } from 'store/configureStore'
 import axios from 'axios'
 import { BASE_URL } from 'config'
+import { useHistory } from 'react-router'
 
 export type PaymentData = {
   success: boolean
@@ -29,6 +24,7 @@ const Payment: React.FC = () => {
   const index = useSelector((state: RootState) => state.index)
   const id = localStorage.getItem('user_id')
   const accessToken: string | null = localStorage.getItem('access_token')
+  const history = useHistory()
 
   const header = {
     Authorization: `Bearer ${accessToken}`,
@@ -63,15 +59,21 @@ const Payment: React.FC = () => {
           const response = await axios({
             method: 'post',
             headers: header,
-            url: `${BASE_URL}/payment/validation?merchant_uid=${merchant_uid}&imp_uid=${imp_uid}`,
+            url: `${BASE_URL}/payment/validation`,
+            data: {
+              merchant_uid: merchant_uid,
+              imp_uid: imp_uid,
+            },
           })
           console.log(response)
+          alert('주문이 완료되었습니다')
+          history.push(`/main`)
         } catch (e) {
           console.log(error_msg)
         }
       } else {
         // 주문 상태 취소로 변경? 주문 삭제?하는 api 호출
-        console.log('결제 취소')
+        alert('주문을 완료하려면 결제해 주세요')
       }
     }
     window.IMP?.request_pay(data, callback)
