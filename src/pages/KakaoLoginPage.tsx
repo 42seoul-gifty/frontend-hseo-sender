@@ -16,10 +16,11 @@ const KakaoLoginPage: React.FC = () => {
           },
         })
 
-        const access_token = res.data.access_token
-        const refresh_token = res.data.refresh_token
-        const user_id = res.data.user.id
-        const nickname = res.data.user.nickname
+        console.log(res)
+        const access_token = res.data.data.access_token
+        const refresh_token = res.data.data.refresh_token
+        const user_id = res.data.data.user.id
+        const nickname = res.data.data.user.nickname
 
         //console.log(user_id)
         localStorage.setItem('access_token', access_token)

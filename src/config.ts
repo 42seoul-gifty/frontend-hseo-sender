@@ -39,6 +39,7 @@ export const ageSelections: SelectType[] = [
 ]
 
 export const priceSelections: SelectType[] = [
+  { id: 1, value: '100', amount: 100 },
   { id: 2, value: '1만5천원', amount: 15000 },
   { id: 3, value: '2만5천원', amount: 25000 },
   { id: 4, value: '3만5천원', amount: 35000 },
@@ -46,9 +47,9 @@ export const priceSelections: SelectType[] = [
 ]
 
 export const genderSelections: SelectType[] = [
-  { id: 1, value: '여성' },
-  { id: 2, value: '남성' },
-  { id: 3, value: '무관' },
+  { id: 1, value: '남' },
+  { id: 2, value: '여' },
+  { id: 3, value: '모두' },
 ]
 
 export const phoneNumberRegex = /^\d{11}$/

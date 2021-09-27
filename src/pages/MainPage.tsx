@@ -15,17 +15,18 @@ const MainPage: React.FC = () => {
   const history = useHistory()
   const modal = useSelector((state: RootState) => state.modal)
   const dispatch = useDispatch()
-
+  /*
   useEffect(() => {
     const getIdNickname = () => {
-      //const userId = localStorage.getItem('user_id')
-      //const nickname = localStorage.getItem('nickname')
-      //const accessToken = localStorage.getItem('access_token')
+      const userId = localStorage.getItem('user_id')
+      const nickname = localStorage.getItem('nickname')
+      const accessToken = localStorage.getItem('access_token')
+      console.log(userId, nickname, accessToken)
     }
 
     getIdNickname()
   }, [])
-
+*/
   const handleMenuButtonClick = (menu: string) => {
     history.push(`/${menu}`)
   }

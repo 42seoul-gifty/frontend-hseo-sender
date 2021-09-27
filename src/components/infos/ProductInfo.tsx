@@ -8,6 +8,7 @@ import { setPageInfo } from 'store/actions/page'
 import axios from 'axios'
 import { BASE_URL } from 'config'
 import ProductListView from './ProductListItem'
+import Payment from 'components/Payment'
 
 const ProductInfo: React.FC = () => {
   const index = useSelector((state: RootState) => state.index)
@@ -50,7 +51,7 @@ const ProductInfo: React.FC = () => {
         <button onClick={() => dispatch(setPageInfo('overall'))}>
           이전으로
         </button>
-        <button>결제하기</button>
+        <Payment />
       </section>
     </div>
   )
