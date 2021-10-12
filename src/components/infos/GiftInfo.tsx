@@ -5,7 +5,6 @@ import { FONT_SIZE_STYLE, FlexCenter, FlexColCenter } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import { showModal, SHOW_WARNING_MODAL } from 'store/actions/modal'
 import { setPageInfo } from 'store/actions/page'
-import Modal from 'components/Modal'
 import Select from 'components/inputs/Select'
 import { ageSelections, genderSelections, priceSelections } from 'config'
 
@@ -40,10 +39,6 @@ const GiftInfo: React.FC = () => {
           다음단계
         </button>
       </section>
-
-      <Modal>
-        <h1>error</h1>
-      </Modal>
     </div>
   )
 }

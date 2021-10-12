@@ -1,14 +1,56 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import ReactDOM, { createPortal } from 'react-dom'
 import { css } from '@emotion/react'
+
 import { BOX_STYLE, COLOR_STYLE } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import { hideModal } from 'store/actions/modal'
+import MyPage from './MyPage'
+import Policy from './Policy'
+import Privacy from './Privacy'
+import Warning from './Warning'
 
+const Modal: React.FC = () => {
+  const dispatch = useDispatch()
+  const modal = useSelector((state: RootState) => state.modal)
+
+  if (
+    !modal.showWarningModal &&
+    !modal.showMyPageModal &&
+    !modal.showPolicyModal &&
+    !modal.showPrivacyModal
+  ) {
+    return <>{null}</>
+  }
+
+  const renderChildren = () => {
+    if (modal.showMyPageModal) return <MyPage />
+    if (modal.showPolicyModal) return <Policy />
+    if (modal.showPrivacyModal) return <Privacy />
+    if (modal.showWarningModal) return <Warning />
+  }
+
+  const handleClose = () => {
+    dispatch(hideModal())
+  }
+
+  return (
+    <>
+      <div css={Dimmer} onClick={handleClose}>
+        <div css={ModalWrapper} onClick={(e) => e.stopPropagation()}>
+          {renderChildren()}
+          <button onClick={handleClose}>x</button>
+        </div>
+      </div>
+    </>
+  )
+}
+
+/*
 interface IProps {
   children: React.ReactNode
 }
+
 const Modal: React.FC<IProps> = ({ children }) => {
   const dispatch = useDispatch()
   const modal = useSelector((state: RootState) => state.modal)
@@ -38,7 +80,7 @@ const Modal: React.FC<IProps> = ({ children }) => {
       )
     : null
 }
-
+*/
 export default Modal
 
 const Dimmer = css`

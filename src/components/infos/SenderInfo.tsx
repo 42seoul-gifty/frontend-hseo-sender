@@ -3,7 +3,6 @@ import { useHistory } from 'react-router'
 import { css } from '@emotion/react'
 import { FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
-import Modal from 'components/Modal'
 import ContactInput from 'components/inputs/ContactInput'
 
 const SenderInfo: React.FC = () => {
@@ -18,9 +17,6 @@ const SenderInfo: React.FC = () => {
         beforeClick={() => history.push('/main')}
         nextPage={'receiver'}
       />
-      <Modal>
-        <h1>error</h1>
-      </Modal>
     </div>
   )
 }

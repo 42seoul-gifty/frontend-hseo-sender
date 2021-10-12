@@ -7,11 +7,13 @@ import KakaoLoginPage from 'pages/KakaoLoginPage'
 
 import GiftPage from 'pages/GiftPage'
 import Header from 'components/Header'
+import Modal from 'components/modals/Modal'
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
+      <Modal />
       <Switch>
         <Route path="/main" exact component={MainPage} />
         <Route path="/sent" exact component={SentListPage} />

@@ -5,16 +5,24 @@ import { css } from '@emotion/react'
 import { AiOutlineUser } from 'react-icons/ai'
 import { ButtonDefault, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
-import Modal from 'components/Modal'
-import MyPage from 'components/MyPage'
-import Policy from 'components/Policy'
-import Privacy from 'components/Privacy'
+import Modal from 'components/modals/Modal'
+import MyPage from 'components/modals/MyPage'
+import Policy from 'components/modals/Policy'
+import Privacy from 'components/modals/Privacy'
 import { showModal, SHOW_MYPAGE_MODAL } from 'store/actions/modal'
+
+//
+import { BASE_URL } from 'config'
+import axios from 'axios'
+//
 
 const MainPage: React.FC = () => {
   const history = useHistory()
   const modal = useSelector((state: RootState) => state.modal)
   const dispatch = useDispatch()
+
+  const accessToken = localStorage.getItem('access_token')
+  console.log(accessToken)
   /*
   useEffect(() => {
     const getIdNickname = () => {
@@ -27,6 +35,7 @@ const MainPage: React.FC = () => {
     getIdNickname()
   }, [])
 */
+
   const handleMenuButtonClick = (menu: string) => {
     history.push(`/${menu}`)
   }
@@ -40,6 +49,27 @@ const MainPage: React.FC = () => {
     if (modal.showPolicyModal) return <Policy />
     if (modal.showPrivacyModal) return <Privacy />
   }
+
+  //
+
+  useEffect(() => {
+    const fetchGiftCandidate = async () => {
+      const url = `${BASE_URL}/ages`
+      try {
+        const res = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        const data = res.data.data
+        console.log(data)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    fetchGiftCandidate()
+  }, [])
 
   return (
     <div css={Container}>
@@ -58,7 +88,6 @@ const MainPage: React.FC = () => {
       <button css={MainMenuButton} onClick={myMenuButtonClick}>
         <AiOutlineUser />
       </button>
-      <Modal>{modalType()}</Modal>
     </div>
   )
 }

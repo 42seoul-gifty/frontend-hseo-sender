@@ -4,7 +4,6 @@ import { css } from '@emotion/react'
 import { FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
 import { setPageInfo } from 'store/actions/page'
-import Modal from 'components/Modal'
 import ContactInput from 'components/inputs/ContactInput'
 
 const ReceiverInfo: React.FC = () => {
@@ -19,9 +18,6 @@ const ReceiverInfo: React.FC = () => {
         beforeClick={() => dispatch(setPageInfo('sender'))}
         nextPage={'gift'}
       />
-      <Modal>
-        <h1>error</h1>
-      </Modal>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://hokim.gifty4u.com'
+export const BASE_URL = 'http://gypark.gifty4u.com'
 
 export interface Iorder {
   [key: string]: string
@@ -16,7 +16,7 @@ export const PRICE_CATEGORY_INDEX = 1
 export const AGE_CATEGORY_INDEX = 1
 
 //카카오 로그인
-export const CLIENT_ID = '77db1d1cdef95abccc65acb9551aa2ca'
+export const CLIENT_ID = '223fe55510e1365b4eb39c45cca100b5'
 export const REDIRECT_URI = 'http://localhost:3000/callback/kakao'
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
 
