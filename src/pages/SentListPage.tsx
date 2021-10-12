@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import { css } from '@emotion/react'
-import { ButtonDefault, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import axios from 'axios'
+
+import { ButtonDefault, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { BASE_URL, Iorder } from 'config'
 
 const SentListPage: React.FC = () => {

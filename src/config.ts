@@ -29,27 +29,27 @@ export type SelectType = {
 export type Selects = {
   ages: SelectType[]
   prices: SelectType[]
+  gender: SelectType[]
 }
 
 export const ageSelections: SelectType[] = [
-  { id: 1, value: '10' },
-  { id: 2, value: '20' },
-  { id: 3, value: '30' },
-  { id: 4, value: '40' },
+  { id: 1, value: '15-19' },
+  { id: 2, value: '20-24' },
+  { id: 3, value: '25-29' },
+  { id: 4, value: '30-34' },
 ]
 
 export const priceSelections: SelectType[] = [
-  { id: 1, value: '100', amount: 100 },
-  { id: 2, value: '1만5천원', amount: 15000 },
-  { id: 3, value: '2만5천원', amount: 25000 },
-  { id: 4, value: '3만5천원', amount: 35000 },
-  { id: 5, value: '4만5천원', amount: 45000 },
+  { id: 1, value: '1만5천원', amount: 15000 },
+  { id: 2, value: '2만5천원', amount: 25000 },
+  { id: 3, value: '3만5천원', amount: 35000 },
+  { id: 4, value: '4만5천원', amount: 45000 },
 ]
 
 export const genderSelections: SelectType[] = [
-  { id: 1, value: '남' },
-  { id: 2, value: '여' },
-  { id: 3, value: '모두' },
+  { id: 1, value: '남자' },
+  { id: 2, value: '여자' },
+  //{ id: 3, value: '모두' },
 ]
 
 export const phoneNumberRegex = /^\d{11}$/

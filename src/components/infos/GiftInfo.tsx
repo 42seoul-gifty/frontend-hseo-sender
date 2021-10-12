@@ -1,16 +1,49 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
+
 import { FONT_SIZE_STYLE, FlexCenter, FlexColCenter } from 'styles/GlobalStyles'
+import { SelectType } from 'config'
 import { RootState } from 'store/configureStore'
 import { showModal, SHOW_WARNING_MODAL } from 'store/actions/modal'
 import { setPageInfo } from 'store/actions/page'
 import Select from 'components/inputs/Select'
-import { ageSelections, genderSelections, priceSelections } from 'config'
+//import { ageSelections, genderSelections, priceSelections } from 'config'
+import api from 'api'
 
 const GiftInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
+
+  const [genderSelections, setGenderSelections] = useState<SelectType[]>([])
+  const [ageSelections, setAgeSelections] = useState<SelectType[]>([])
+  const [priceSelections, setPriceSelections] = useState<SelectType[]>([])
+
+  const accessToken: string | null = localStorage.getItem('access_token')
+  console.log(accessToken)
+
+  useEffect(() => {
+    const fetchSelections = async (url: string) => {
+      try {
+        const res = await api.get(url, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        const data = res.data.data
+        console.log(data)
+        if (url === '/ages') setAgeSelections(data)
+        if (url === '/prices') setPriceSelections(data)
+        if (url === '/genders') setGenderSelections(data)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    fetchSelections('/ages')
+    fetchSelections('/prices')
+    fetchSelections('/genders')
+  }, [])
 
   const handleNext = () => {
     if (!order.age || !order.price) {

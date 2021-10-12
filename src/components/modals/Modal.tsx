@@ -5,10 +5,7 @@ import { css } from '@emotion/react'
 import { BOX_STYLE, COLOR_STYLE } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
 import { hideModal } from 'store/actions/modal'
-import MyPage from './MyPage'
-import Policy from './Policy'
-import Privacy from './Privacy'
-import Warning from './Warning'
+import { MyPage, Policy, Privacy, Warning } from 'components/modals'
 
 const Modal: React.FC = () => {
   const dispatch = useDispatch()
@@ -46,41 +43,6 @@ const Modal: React.FC = () => {
   )
 }
 
-/*
-interface IProps {
-  children: React.ReactNode
-}
-
-const Modal: React.FC<IProps> = ({ children }) => {
-  const dispatch = useDispatch()
-  const modal = useSelector((state: RootState) => state.modal)
-
-  const handleClose = () => {
-    dispatch(hideModal())
-  }
-
-  const modalComponent = (
-    <>
-      <div css={Dimmer} onClick={handleClose}>
-        <div css={ModalWrapper} onClick={(e) => e.stopPropagation()}>
-          {children}
-          <button onClick={handleClose}>x</button>
-        </div>
-      </div>
-    </>
-  )
-
-  return modal.showMyPageModal ||
-    modal.showWarningModal ||
-    modal.showPolicyModal ||
-    modal.showPrivacyModal
-    ? ReactDOM.createPortal(
-        modalComponent,
-        document.querySelector('#modal-root') as HTMLElement,
-      )
-    : null
-}
-*/
 export default Modal
 
 const Dimmer = css`

@@ -5,10 +5,6 @@ import { css } from '@emotion/react'
 import { AiOutlineUser } from 'react-icons/ai'
 import { ButtonDefault, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { RootState } from 'store/configureStore'
-import Modal from 'components/modals/Modal'
-import MyPage from 'components/modals/MyPage'
-import Policy from 'components/modals/Policy'
-import Privacy from 'components/modals/Privacy'
 import { showModal, SHOW_MYPAGE_MODAL } from 'store/actions/modal'
 
 //
@@ -18,9 +14,14 @@ import axios from 'axios'
 
 const MainPage: React.FC = () => {
   const history = useHistory()
-  const modal = useSelector((state: RootState) => state.modal)
   const dispatch = useDispatch()
 
+  localStorage.setItem(
+    'access_token',
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0MDE3MjQ3LCJqdGkiOiIwNDIwM2Q3MDlhYjg0YWFhYjJiYzAyYTc1MDBhZGNjMSIsInVzZXJfaWQiOjJ9.QZOMt8p3u77T5ID2iNTGbW8YgAw3p7h5RODxbNh6LTg',
+  )
+  localStorage.setItem('user_id', '2')
+  localStorage.setItem('nickname', '서희영')
   const accessToken = localStorage.getItem('access_token')
   console.log(accessToken)
   /*
@@ -43,33 +44,6 @@ const MainPage: React.FC = () => {
   const myMenuButtonClick = () => {
     dispatch(showModal(SHOW_MYPAGE_MODAL))
   }
-
-  const modalType = () => {
-    if (modal.showMyPageModal) return <MyPage />
-    if (modal.showPolicyModal) return <Policy />
-    if (modal.showPrivacyModal) return <Privacy />
-  }
-
-  //
-
-  useEffect(() => {
-    const fetchGiftCandidate = async () => {
-      const url = `${BASE_URL}/ages`
-      try {
-        const res = await axios.get(url, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
-        const data = res.data.data
-        console.log(data)
-      } catch (e) {
-        console.log(e)
-      }
-    }
-
-    fetchGiftCandidate()
-  }, [])
 
   return (
     <div css={Container}>

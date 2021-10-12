@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
+
 import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
 import { RootState } from 'store/configureStore'
@@ -16,10 +17,11 @@ const ProductInfo: React.FC = () => {
   const [productList, setProductList] = useState<any[]>([])
 
   const accessToken: string | null = localStorage.getItem('access_token')
+  console.log(accessToken)
 
   useEffect(() => {
     const fetchGiftCandidate = async () => {
-      const url = `${BASE_URL}/products?gender=${index.genderIndex}&price=${index.priceIndex}&age=${index.ageIndex}`
+      const url = `${BASE_URL}/products?price=${index.priceIndex}&age=${index.ageIndex}gender=${index.genderIndex}`
       try {
         const res = await axios.get(url, {
           headers: {

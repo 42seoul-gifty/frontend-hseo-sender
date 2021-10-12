@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { css } from '@emotion/react'
-import { useEffect } from 'react'
-import { BASE_URL } from 'config'
 import axios from 'axios'
+
+import { BASE_URL } from 'config'
+import api from 'api'
 
 const KakaoLoginPage: React.FC = () => {
   const code = new URL(window.location.href).searchParams.get('code')
@@ -11,23 +12,23 @@ const KakaoLoginPage: React.FC = () => {
   useEffect(() => {
     const getToken = async () => {
       try {
-        const res = await axios.post(`${BASE_URL}/login/kakao`, {
+        const res = await api.get(`/login/kakao`, {
           headers: {
-            Code: code,
+            'Authorization-Code': code,
           },
         })
 
         console.log(res)
-        //const access_token = res.data.data.access_token
-        const access_token =
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0MDA1ODkzLCJqdGkiOiI4M2IyNmVhZTlmZTY0N2I0ODhjYzQ2MTE4NTYwNzU5OCIsInVzZXJfaWQiOjR9.0fg02YY0g1R6PH9puRfPwdHeRfH11kFFpHJ44vp_FxI'
-        //const refresh_token = res.data.data.refresh_token
-        const refresh_token =
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYzNDYwMzQ5MywianRpIjoiY2I1M2M3YTdjZGUxNGFlMzhjMGJlNjk1MTkxMTcwNTUiLCJ1c2VyX2lkIjo0fQ.1DOvCRCaRcwSMWnFqT0ApGkz_PcRs00RUg07mdhaIgw'
-        //const user_id = res.data.data.user.id
-        const user_id = 4
-        //const nickname = res.data.data.user.nickname
-        const nickname = '서희영'
+        const access_token = res.data.data.access_token
+        //const access_token =
+        //  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0MDA1ODkzLCJqdGkiOiI4M2IyNmVhZTlmZTY0N2I0ODhjYzQ2MTE4NTYwNzU5OCIsInVzZXJfaWQiOjR9.0fg02YY0g1R6PH9puRfPwdHeRfH11kFFpHJ44vp_FxI'
+        const refresh_token = res.data.data.refresh_token
+        //const refresh_token =
+        //  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYzNDYwMzQ5MywianRpIjoiY2I1M2M3YTdjZGUxNGFlMzhjMGJlNjk1MTkxMTcwNTUiLCJ1c2VyX2lkIjo0fQ.1DOvCRCaRcwSMWnFqT0ApGkz_PcRs00RUg07mdhaIgw'
+        const user_id = res.data.data.user.id
+        //const user_id = 4
+        const nickname = res.data.data.user.nickname
+        //const nickname = '서희영'
 
         console.log(user_id)
         localStorage.setItem('access_token', access_token)
@@ -40,7 +41,7 @@ const KakaoLoginPage: React.FC = () => {
     }
 
     getToken()
-    window.location.assign('/main')
+    //window.location.assign('/main')
   }, [])
 
   return (
