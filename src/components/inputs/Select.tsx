@@ -13,12 +13,12 @@ interface IProps {
 
 const Select: React.FC<IProps> = ({ keyword, selections }) => {
   const dispatch = useDispatch()
-  const order = useSelector((state: RootState) => state.order)
-  const [clicked, setClicked] = useState<string>(order[keyword])
+  const index = useSelector((state: RootState) => state.index)
+  const [clicked, setClicked] = useState<number[]>([])
 
-  const handleClick = (value: string) => {
-    setClicked(value)
-    dispatch(setOrderInfo({ key: keyword, value: value }))
+  const handleClick = (id: number) => {
+    setClicked([id])
+    dispatch(setOrderInfo({ key: keyword, value: id }))
   }
   /*
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -30,8 +30,8 @@ const Select: React.FC<IProps> = ({ keyword, selections }) => {
       {selections.map((option) => (
         <button
           key={option.id}
-          css={option.value === clicked ? ButtonSelected : Button}
-          onClick={() => handleClick(option.value)}
+          css={clicked.includes(option.id) ? ButtonSelected : Button}
+          onClick={() => handleClick(option.id)}
         >
           {option.value}
         </button>

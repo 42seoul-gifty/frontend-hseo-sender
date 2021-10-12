@@ -13,6 +13,7 @@ import Payment from 'components/Payment'
 
 const ProductInfo: React.FC = () => {
   const index = useSelector((state: RootState) => state.index)
+  const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
   const [productList, setProductList] = useState<any[]>([])
 
@@ -21,7 +22,7 @@ const ProductInfo: React.FC = () => {
 
   useEffect(() => {
     const fetchGiftCandidate = async () => {
-      const url = `${BASE_URL}/products?price=${index.priceIndex}&age=${index.ageIndex}gender=${index.genderIndex}`
+      const url = `${BASE_URL}/products?price=${order.price}&age=${order.age}gender=${order.gender}`
       try {
         const res = await axios.get(url, {
           headers: {

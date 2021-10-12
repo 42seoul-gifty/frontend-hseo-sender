@@ -1,14 +1,14 @@
 export const BASE_URL = 'http://gypark.gifty4u.com'
 
 export interface Iorder {
-  [key: string]: string
+  [key: string]: string | number
   giver_name: string
   giver_phone: string
   receiver_name: string
   receiver_phone: string
-  gender: string
-  age: string
-  price: string
+  gender: number
+  age: number
+  price: number
 }
 
 export const GENDER_CATEGORY_INDEX = 1
@@ -22,8 +22,9 @@ export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id
 
 export type SelectType = {
   id: number
-  value: string
+  value?: string
   amount?: number
+  name?: string
 }
 
 export type Selects = {

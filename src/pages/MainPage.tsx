@@ -10,12 +10,24 @@ import { showModal, SHOW_MYPAGE_MODAL } from 'store/actions/modal'
 //
 import { BASE_URL } from 'config'
 import axios from 'axios'
+import { getSelection } from 'store/actions/selection'
 //
 
 const MainPage: React.FC = () => {
   const history = useHistory()
   const dispatch = useDispatch()
+  const selection = useSelector((state: RootState) => state.selection)
 
+  useEffect(() => {
+    dispatch(getSelection('ages'))
+    dispatch(getSelection('prices'))
+    dispatch(getSelection('genders'))
+    //dispatch(getSelection('ages'))
+    //dispatch(getSelection('ages'))
+  }, [])
+
+  console.log(selection)
+  /*
   localStorage.setItem(
     'access_token',
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0MDE3MjQ3LCJqdGkiOiIwNDIwM2Q3MDlhYjg0YWFhYjJiYzAyYTc1MDBhZGNjMSIsInVzZXJfaWQiOjJ9.QZOMt8p3u77T5ID2iNTGbW8YgAw3p7h5RODxbNh6LTg',
@@ -24,6 +36,8 @@ const MainPage: React.FC = () => {
   localStorage.setItem('nickname', '서희영')
   const accessToken = localStorage.getItem('access_token')
   console.log(accessToken)
+  */
+
   /*
   useEffect(() => {
     const getIdNickname = () => {

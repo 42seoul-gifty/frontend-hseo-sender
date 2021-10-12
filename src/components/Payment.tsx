@@ -22,7 +22,8 @@ export type PaymentData = {
 
 const Payment: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
-  const index = useSelector((state: RootState) => state.index)
+  //const index = useSelector((state: RootState) => state.index)
+  const selection = useSelector((state: RootState) => state.selection)
   const id = localStorage.getItem('user_id')
   const accessToken: string | null = localStorage.getItem('access_token')
   const history = useHistory()
@@ -35,10 +36,15 @@ const Payment: React.FC = () => {
 
   const handleIMP = (merchant_uid: string) => {
     window.IMP?.init(IMP_CODE)
+    const amount: number | undefined = selection.prices?.filter(
+      (price) => price.id === order.price,
+    )[0].amount
+    /*
     const amount: number =
       priceSelections
         .filter((price) => price.value === order.price)
         .map((price) => price.amount)[0] || 0
+        */
     if (!amount) {
       alert('결제 금액을 확인해주세요')
       return
@@ -88,9 +94,9 @@ const Payment: React.FC = () => {
       giver_phone: order.giver_phone,
       receiver_name: order.receiver_name,
       receiver_phone: order.receiver_phone,
-      gender: [index.genderIndex].toString(),
-      age: [index.ageIndex].toString(),
-      price: [index.priceIndex].toString(),
+      gender: order.gender,
+      age: order.age,
+      price: order.price,
     }
 
     try {
@@ -98,7 +104,7 @@ const Payment: React.FC = () => {
         method: 'post',
         url: `${BASE_URL}/users/${id}/orders`,
         headers: header,
-        data: orderData,
+        data: order,
       })
       if (res.data.success) {
         console.log(res.data.merchant_uid)

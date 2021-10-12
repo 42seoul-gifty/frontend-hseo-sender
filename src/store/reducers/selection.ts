@@ -16,7 +16,7 @@ const initialState: SelectionState = {
 const selectionReducer = (state = initialState, action: SelectionAction) => {
   switch (action.type) {
     case SET_SELECTION:
-      return { [action.payload.type]: action.payload.selection }
+      return { ...state, [action.payload.type]: action.payload.selection }
     default:
       return state
   }

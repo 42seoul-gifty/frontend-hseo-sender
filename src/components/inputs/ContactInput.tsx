@@ -24,7 +24,7 @@ const ContactInput: React.FC<IProps> = ({ names, beforeClick, nextPage }) => {
       dispatch(showModal(SHOW_WARNING_MODAL))
       return
     }
-    if (!order[names[1]].match(phoneNumberRegex)) {
+    if ((!order[names[1]]).toString().match(phoneNumberRegex)) {
       dispatch(showModal(SHOW_WARNING_MODAL))
       return
     }

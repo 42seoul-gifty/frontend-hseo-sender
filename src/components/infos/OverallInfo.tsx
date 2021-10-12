@@ -19,7 +19,7 @@ export type PaymentData = {
 const OverallInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
-
+  /*
   const getAgeIndex = () => {
     const filtered = ageSelections.filter((item) => item.value === order.age)
     dispatch(setAgeIndex(filtered[0].id))
@@ -44,7 +44,7 @@ const OverallInfo: React.FC = () => {
     getPriceIndex()
     getGenderIndex()
   }, [])
-
+*/
   const handleGiftlistButton = () => {
     dispatch(setPageInfo('product'))
   }
