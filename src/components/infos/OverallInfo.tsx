@@ -3,9 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { setPageInfo } from 'store/actions/page'
-import { setAgeIndex, setPriceIndex, setGenderIndex } from 'store/actions'
 import { RootState } from 'store/configureStore'
-import { ageSelections, priceSelections, genderSelections } from 'config'
 import Payment from 'components/Payment'
 
 export type PaymentData = {

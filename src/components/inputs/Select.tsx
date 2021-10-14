@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { setOrderInfo } from 'store/actions/order'
 import { COLOR_STYLE, FlexCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 import { SelectType } from 'config'
-import { RootState } from 'store/configureStore'
 
 interface IProps {
   keyword: string
@@ -13,18 +12,13 @@ interface IProps {
 
 const Select: React.FC<IProps> = ({ keyword, selections }) => {
   const dispatch = useDispatch()
-  const index = useSelector((state: RootState) => state.index)
   const [clicked, setClicked] = useState<number[]>([])
 
   const handleClick = (id: number) => {
     setClicked([id])
     dispatch(setOrderInfo({ key: keyword, value: id }))
   }
-  /*
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setOrderInfo({ key: keyword, value: e.target.value }))
-  }
-  */
+
   return (
     <div css={Container}>
       {selections.map((option) => (
@@ -36,14 +30,6 @@ const Select: React.FC<IProps> = ({ keyword, selections }) => {
           {option.value}
         </button>
       ))}
-
-      {/*
-      <select value={order[keyword]} onChange={handleChange}>
-        {selections.map((option) => (
-          <option value={option.value}>{option.value}</option>
-        ))}
-      </select>
-        */}
     </div>
   )
 }

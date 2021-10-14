@@ -8,41 +8,44 @@ import { RootState } from 'store/configureStore'
 import { showModal, SHOW_WARNING_MODAL } from 'store/actions/modal'
 import { setPageInfo } from 'store/actions/page'
 import Select from 'components/inputs/Select'
-//import { ageSelections, genderSelections, priceSelections } from 'config'
 import api from 'api'
 
+type Selections = {
+  genders: SelectType[]
+  ages: SelectType[]
+  prices: SelectType[]
+}
 const GiftInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
 
-  const [genderSelections, setGenderSelections] = useState<SelectType[]>([])
-  const [ageSelections, setAgeSelections] = useState<SelectType[]>([])
-  const [priceSelections, setPriceSelections] = useState<SelectType[]>([])
+  const [selections, setSelections] = useState<Selections>({
+    genders: [],
+    ages: [],
+    prices: [],
+  })
 
   const accessToken: string | null = localStorage.getItem('access_token')
-  console.log(accessToken)
 
   useEffect(() => {
     const fetchSelections = async (url: string) => {
       try {
-        const res = await api.get(url, {
+        const res = await api.get(`/${url}`, {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            //Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0MTgwNTYyLCJqdGkiOiI0YzIwYTRjMGIxMzM0ODVkYjc5NWE1ZjQyMTQ2YTNiMiIsInVzZXJfaWQiOjJ9.fD1htg995QAFxvAgI0UBNIxO5PQUZ5aL9HCwLSRH6OI`,
           },
         })
         const data = res.data.data
-        console.log(data)
-        if (url === '/ages') setAgeSelections(data)
-        if (url === '/prices') setPriceSelections(data)
-        if (url === '/genders') setGenderSelections(data)
+        setSelections((prev) => ({ ...prev, [url]: data }))
       } catch (e) {
         console.log(e)
       }
     }
 
-    fetchSelections('/ages')
-    fetchSelections('/prices')
-    fetchSelections('/genders')
+    fetchSelections('ages')
+    fetchSelections('prices')
+    fetchSelections('genders')
   }, [])
 
   const handleNext = () => {
@@ -59,9 +62,9 @@ const GiftInfo: React.FC = () => {
       <div>성별, 나이, 금액대를 입력해주세요</div>
 
       <section css={SelectionSection}>
-        <Select keyword="gender" selections={genderSelections} />
-        <Select keyword="age" selections={ageSelections} />
-        <Select keyword="price" selections={priceSelections} />
+        <Select keyword="gender" selections={selections.genders} />
+        <Select keyword="age" selections={selections.ages} />
+        <Select keyword="price" selections={selections.prices} />
       </section>
 
       <section css={BeforeNextButtonSection}>
