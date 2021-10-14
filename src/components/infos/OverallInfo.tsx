@@ -17,32 +17,7 @@ export type PaymentData = {
 const OverallInfo: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const dispatch = useDispatch()
-  /*
-  const getAgeIndex = () => {
-    const filtered = ageSelections.filter((item) => item.value === order.age)
-    dispatch(setAgeIndex(filtered[0].id))
-  }
 
-  const getPriceIndex = () => {
-    const filtered = priceSelections.filter(
-      (item) => item.value === order.price,
-    )
-    dispatch(setPriceIndex(filtered[0].id))
-  }
-
-  const getGenderIndex = () => {
-    const filtered = genderSelections.filter(
-      (item) => item.value === order.gender,
-    )
-    dispatch(setGenderIndex(filtered[0].id))
-  }
-
-  useEffect(() => {
-    getAgeIndex()
-    getPriceIndex()
-    getGenderIndex()
-  }, [])
-*/
   const handleGiftlistButton = () => {
     dispatch(setPageInfo('product'))
   }

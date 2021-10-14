@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import { css } from '@emotion/react'
-import axios from 'axios'
 
 import { ButtonDefault, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
-import { BASE_URL, Iorder } from 'config'
+import { Iorder } from 'config'
+import api from 'api'
 
 const SentListPage: React.FC = () => {
   const history = useHistory()
@@ -12,15 +12,16 @@ const SentListPage: React.FC = () => {
 
   useEffect(() => {
     const userId = localStorage.getItem('user_id')
-    //const nickname = localStorage.getItem('nickname')
-    const accessToken = localStorage.getItem('access_token')
+    const accessToken = localStorage.getItem('access_token') || ''
 
     const fetchSentList = async () => {
       try {
-        const res = await axios.get(`${BASE_URL}/users/${userId}/orders`)
-        //console.log(res)
-        setOrders(res.data.order)
-        console.log(orders)
+        const res = await api.get(`/users/${userId}/orders`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        setOrders(res.data.data)
       } catch (e) {
         console.log('error')
       }

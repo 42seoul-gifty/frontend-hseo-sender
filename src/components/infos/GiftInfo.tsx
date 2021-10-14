@@ -25,15 +25,14 @@ const GiftInfo: React.FC = () => {
     prices: [],
   })
 
-  const accessToken: string | null = localStorage.getItem('access_token')
+  const accessToken: string = localStorage.getItem('access_token') || ''
 
   useEffect(() => {
     const fetchSelections = async (url: string) => {
       try {
         const res = await api.get(`/${url}`, {
           headers: {
-            //Authorization: `Bearer ${accessToken}`,
-            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0MTgwNTYyLCJqdGkiOiI0YzIwYTRjMGIxMzM0ODVkYjc5NWE1ZjQyMTQ2YTNiMiIsInVzZXJfaWQiOjJ9.fD1htg995QAFxvAgI0UBNIxO5PQUZ5aL9HCwLSRH6OI`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         const data = res.data.data

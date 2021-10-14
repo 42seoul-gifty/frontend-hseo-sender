@@ -35,31 +35,11 @@ export type Selects = {
   gender: SelectType[]
 }
 
-export const ageSelections: SelectType[] = [
-  { id: 1, value: '15-19' },
-  { id: 2, value: '20-24' },
-  { id: 3, value: '25-29' },
-  { id: 4, value: '30-34' },
-]
-
-export const priceSelections: SelectType[] = [
-  { id: 1, value: '1만5천원', amount: 15000 },
-  { id: 2, value: '2만5천원', amount: 25000 },
-  { id: 3, value: '3만5천원', amount: 35000 },
-  { id: 4, value: '4만5천원', amount: 45000 },
-]
-
-export const genderSelections: SelectType[] = [
-  { id: 1, value: '남자' },
-  { id: 2, value: '여자' },
-  //{ id: 3, value: '모두' },
-]
-
 export const phoneNumberRegex = /^\d{11}$/
 
 //IMP 결제
-export const IMP_CODE = 'imp71394683'
-export const IMP_KEY = 4674594066918237
+export const IMP_CODE = 'imp18755444'
+export const IMP_KEY = 3781620431090305
 export const IMP_SECRET =
   'GD8sR5tjJeJedchRQg0GtotbwOa0u3obHwEyC7SllBAzNSrE9rlDPOOmCYm71LiJiXiU4agqMR0AJreT'
 

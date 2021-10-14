@@ -8,6 +8,7 @@ import { RootState } from 'store/configureStore'
 import { setPageInfo } from 'store/actions/page'
 import axios from 'axios'
 import { BASE_URL } from 'config'
+import api from 'api'
 import ProductListView from './ProductListItem'
 import Payment from 'components/Payment'
 
@@ -16,17 +17,15 @@ const ProductInfo: React.FC = () => {
   const dispatch = useDispatch()
   const [productList, setProductList] = useState<any[]>([])
 
-  const accessToken: string | null = localStorage.getItem('access_token')
-  console.log(accessToken)
+  const accessToken: string = localStorage.getItem('access_token') || ''
 
   useEffect(() => {
     const fetchGiftCandidate = async () => {
-      const url = `${BASE_URL}/products?price=${order.price}&age=${order.age}&gender=${order.gender}`
+      const url = `/products?price=${order.price}&age=${order.age}&gender=${order.gender}`
       try {
-        const res = await axios.get(url, {
+        const res = await api.get(url, {
           headers: {
-            //Authorization: `Bearer ${accessToken}`,
-            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0MTgwNTYyLCJqdGkiOiI0YzIwYTRjMGIxMzM0ODVkYjc5NWE1ZjQyMTQ2YTNiMiIsInVzZXJfaWQiOjJ9.fD1htg995QAFxvAgI0UBNIxO5PQUZ5aL9HCwLSRH6OI`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         const data = res.data.data

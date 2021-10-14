@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
 import { css } from '@emotion/react'
 import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
 
-import { Iorder, IMP_CODE, SelectType } from 'config'
+import { IMP_CODE, SelectType } from 'config'
 import api from 'api'
 import { RequestPayParams, RequestPayResponse } from 'iamportTypes'
 import { RootState } from 'store/configureStore'
-import axios from 'axios'
-import { BASE_URL } from 'config'
-import { useHistory } from 'react-router'
 import { setPageInfo } from 'store/actions/page'
 
 export type PaymentData = {
@@ -23,7 +21,7 @@ export type PaymentData = {
 const Payment: React.FC = () => {
   const order = useSelector((state: RootState) => state.order)
   const id = localStorage.getItem('user_id')
-  const accessToken: string | null = localStorage.getItem('access_token')
+  const accessToken: string = localStorage.getItem('access_token') || ''
   const history = useHistory()
   const dispatch = useDispatch()
 
@@ -37,10 +35,7 @@ const Payment: React.FC = () => {
     const fetchPrices = async () => {
       try {
         const res = await api.get(`/prices`, {
-          headers: {
-            //Authorization: `Bearer ${accessToken}`,
-            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM0MTgwNTYyLCJqdGkiOiI0YzIwYTRjMGIxMzM0ODVkYjc5NWE1ZjQyMTQ2YTNiMiIsInVzZXJfaWQiOjJ9.fD1htg995QAFxvAgI0UBNIxO5PQUZ5aL9HCwLSRH6OI`,
-          },
+          headers: header,
         })
         setPrices(res.data.data)
       } catch (e) {
@@ -53,14 +48,14 @@ const Payment: React.FC = () => {
 
   const handleIMP = (merchant_uid: string) => {
     window.IMP?.init(IMP_CODE)
-    const amount: number | undefined = prices.filter(
-      (price) => price.id === order.price,
-    )[0].amount
+    const amount: number =
+      Number(prices.filter((price) => price.id === order.price)[0].value) || 0
 
     if (!amount) {
       alert('결제 금액을 확인해주세요')
       return
     }
+
     const data: RequestPayParams = {
       pg: 'html5_inicis',
       pay_method: 'card',
@@ -76,10 +71,10 @@ const Payment: React.FC = () => {
 
       if (success) {
         try {
-          const response = await axios({
+          const response = await api({
             method: 'post',
             headers: header,
-            url: `${BASE_URL}/payment/validation`,
+            url: `/payment/validation`,
             data: {
               merchant_uid: merchant_uid,
               imp_uid: imp_uid,
@@ -101,29 +96,21 @@ const Payment: React.FC = () => {
   }
 
   const handlePayment = async () => {
-    const orderData: Iorder = {
-      giver_name: order.giver_name,
-      giver_phone: order.giver_phone,
-      receiver_name: order.receiver_name,
-      receiver_phone: order.receiver_phone,
-      gender: order.gender,
-      age: order.age,
-      price: order.price,
-    }
-
+    const orderData = { ...order, gender: [order.gender], age: [order.age] }
     try {
-      const res = await axios({
+      const res = await api({
         method: 'post',
-        url: `${BASE_URL}/users/${id}/orders`,
+        url: `/users/${id}/orders`,
         headers: header,
-        data: order,
+        data: orderData,
       })
       if (res.data.success) {
-        console.log(res.data.merchant_uid)
-        handleIMP(res.data.merchant_uid)
+        console.log(res.data.data.merchant_uid)
+        handleIMP(res.data.data.merchant_uid)
       }
     } catch (e) {
       console.log('order 생성 실패')
+      console.log(e)
     }
   }
 
