@@ -3,13 +3,14 @@ import React, { useEffect } from 'react'
 import { css } from '@emotion/react'
 import api from 'api'
 
-const KakaoLoginPage: React.FC = () => {
+const NaverLoginPage: React.FC = () => {
   const code = new URL(window.location.href).searchParams.get('code')
+  console.log(code)
 
   useEffect(() => {
     const getToken = async () => {
       try {
-        const res = await api.get(`/login/kakao`, {
+        const res = await api.get(`/login/naver`, {
           headers: {
             'Authorization-Code': code,
           },
@@ -25,7 +26,7 @@ const KakaoLoginPage: React.FC = () => {
         localStorage.setItem('user_id', user_id.toString())
         localStorage.setItem('nickname', nickname)
 
-        window.location.assign('/main')
+        //window.location.assign('/main')
       } catch (e) {
         console.log(e)
       }
@@ -41,7 +42,7 @@ const KakaoLoginPage: React.FC = () => {
   )
 }
 
-export default KakaoLoginPage
+export default NaverLoginPage
 
 const Container = css`
   width: 60%;

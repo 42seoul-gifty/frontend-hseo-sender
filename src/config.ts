@@ -1,5 +1,4 @@
 export const BASE_URL = 'http://gypark.gifty4u.com'
-//export const BASE_URL = 'http://hokim.gifty4u.com'
 
 export interface Iorder {
   [key: string]: string | number
@@ -11,16 +10,6 @@ export interface Iorder {
   age: number
   price: number
 }
-
-export const GENDER_CATEGORY_INDEX = 1
-export const PRICE_CATEGORY_INDEX = 1
-export const AGE_CATEGORY_INDEX = 1
-
-//카카오 로그인
-export const CLIENT_ID = '223fe55510e1365b4eb39c45cca100b5'
-//export const CLIENT_ID = '77db1d1cdef95abccc65acb9551aa2ca'
-export const REDIRECT_URI = 'http://localhost:3000/callback/kakao'
-export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
 
 export type SelectType = {
   id: number
@@ -36,6 +25,16 @@ export type Selects = {
 }
 
 export const phoneNumberRegex = /^\d{11}$/
+//카카오 로그인
+export const CLIENT_ID = '223fe55510e1365b4eb39c45cca100b5'
+export const REDIRECT_URI = 'http://localhost:3000/callback/kakao'
+export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
+
+//네이버 로그인
+export const NAVER_CLIENT_ID = 'mKeM7aEuG66T0SPMnrw2'
+export const NAVER_SECRET = 'zN7dGaVF4V'
+export const NAVER_REDIRECT_URI = 'http://localhost:3000/callback/naver'
+export const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&redirect_uri=${NAVER_REDIRECT_URI}`
 
 //IMP 결제
 export const IMP_CODE = 'imp18755444'
