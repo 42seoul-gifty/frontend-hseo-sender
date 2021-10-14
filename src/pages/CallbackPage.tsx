@@ -3,14 +3,17 @@ import React, { useEffect } from 'react'
 import { css } from '@emotion/react'
 import api from 'api'
 
-const NaverLoginPage: React.FC = () => {
+interface IProps {
+  url: string
+}
+
+const CallbackPage: React.FC<IProps> = ({ url }) => {
   const code = new URL(window.location.href).searchParams.get('code')
-  console.log(code)
 
   useEffect(() => {
     const getToken = async () => {
       try {
-        const res = await api.get(`/login/naver`, {
+        const res = await api.get(`/login/${url}`, {
           headers: {
             'Authorization-Code': code,
           },
@@ -26,7 +29,7 @@ const NaverLoginPage: React.FC = () => {
         localStorage.setItem('user_id', user_id.toString())
         localStorage.setItem('nickname', nickname)
 
-        //window.location.assign('/main')
+        window.location.assign('/main')
       } catch (e) {
         console.log(e)
       }
@@ -42,7 +45,7 @@ const NaverLoginPage: React.FC = () => {
   )
 }
 
-export default NaverLoginPage
+export default CallbackPage
 
 const Container = css`
   width: 60%;
