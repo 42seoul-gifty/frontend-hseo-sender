@@ -48,7 +48,7 @@ const GiftInfo: React.FC = () => {
   }, [])
 
   const handleNext = () => {
-    if (!order.age || !order.price) {
+    if (order.age.length === 0 || !order.price || order.gender.length === 0) {
       dispatch(showModal(SHOW_WARNING_MODAL))
       return
     }

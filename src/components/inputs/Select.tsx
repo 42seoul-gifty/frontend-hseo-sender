@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
 import { setOrderInfo } from 'store/actions/order'
@@ -12,20 +12,35 @@ interface IProps {
 
 const Select: React.FC<IProps> = ({ keyword, selections }) => {
   const dispatch = useDispatch()
-  const [clicked, setClicked] = useState<number[]>([])
+  const [clicked, setClicked] = useState<string[]>([])
 
-  const handleClick = (id: number) => {
-    setClicked([id])
-    dispatch(setOrderInfo({ key: keyword, value: id }))
+  const handleClick = (id: string) => {
+    if (keyword === 'price') {
+      setClicked([id])
+    } else {
+      if (clicked.includes(id)) {
+        const filtered = clicked.filter((item) => item !== id)
+        setClicked(filtered)
+      } else {
+        setClicked([...clicked, id])
+      }
+    }
   }
+
+  useEffect(() => {
+    console.log(clicked)
+    if (keyword === 'price')
+      dispatch(setOrderInfo({ key: keyword, value: clicked[0] }))
+    else dispatch(setOrderInfo({ key: keyword, value: clicked }))
+  }, [clicked])
 
   return (
     <div css={Container}>
       {selections.map((option) => (
         <button
           key={option.id}
-          css={clicked.includes(option.id) ? ButtonSelected : Button}
-          onClick={() => handleClick(option.id)}
+          css={clicked.includes(option.id.toString()) ? ButtonSelected : Button}
+          onClick={() => handleClick(option.id.toString())}
         >
           {option.value}
         </button>

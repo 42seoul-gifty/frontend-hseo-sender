@@ -7,7 +7,7 @@ export type SelectionInfo = {
 */
 export type InfoSet = {
   key: string
-  value: string | number
+  value: string | number | string[]
 }
 
 export const setOrderInfo = (info: InfoSet) => ({

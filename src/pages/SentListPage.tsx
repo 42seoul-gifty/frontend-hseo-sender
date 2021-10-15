@@ -3,12 +3,12 @@ import { useHistory } from 'react-router'
 import { css } from '@emotion/react'
 
 import { ButtonDefault, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
-import { Iorder } from 'config'
+import { RecentOrders } from 'config'
 import api from 'api'
 
 const SentListPage: React.FC = () => {
   const history = useHistory()
-  const [orders, setOrders] = useState<Iorder[]>([])
+  const [orders, setOrders] = useState<RecentOrders[]>([])
 
   useEffect(() => {
     const userId = localStorage.getItem('user_id')
@@ -36,7 +36,7 @@ const SentListPage: React.FC = () => {
         {`<`}
       </button>
       {orders.map((order) => (
-        <div key={order.id}>{order.order_date}</div>
+        <div key={order.id}>{`${order.receiver.name} ${order.status}`}</div>
       ))}
     </div>
   )

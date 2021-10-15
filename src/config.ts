@@ -1,13 +1,13 @@
 export const BASE_URL = 'http://gypark.gifty4u.com'
 
 export interface Iorder {
-  [key: string]: string | number
+  [key: string]: string | number | string[]
   giver_name: string
   giver_phone: string
   receiver_name: string
   receiver_phone: string
-  gender: number
-  age: number
+  gender: string[]
+  age: string[]
   price: number
 }
 
@@ -22,6 +22,36 @@ export type Selects = {
   ages: SelectType[]
   prices: SelectType[]
   gender: SelectType[]
+}
+
+type Preference = {
+  age: number[]
+  gender: number[]
+  price: number
+}
+
+type Address = {
+  post_code: string
+  address: string
+  address_detail: string
+}
+
+type Receiver = {
+  id: string
+  name: string
+  phone: string
+  product: string | null
+  address: Address
+}
+
+export type RecentOrders = {
+  id: number
+  giver_name: string
+  giver_phone: string
+  order_date: string
+  preference: Preference
+  receiver: Receiver
+  status: string
 }
 
 export const phoneNumberRegex = /^\d{11}$/

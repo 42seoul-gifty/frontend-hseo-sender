@@ -11,8 +11,8 @@ const initialState: Iorder = {
   giver_phone: '',
   receiver_name: '',
   receiver_phone: '',
-  gender: 0,
-  age: 0,
+  gender: [],
+  age: [],
   price: 0,
 }
 

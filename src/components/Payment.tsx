@@ -49,8 +49,11 @@ const Payment: React.FC = () => {
   const handleIMP = (merchant_uid: string) => {
     window.IMP?.init(IMP_CODE)
     const amount: number =
-      Number(prices.filter((price) => price.id === order.price)[0].value) || 0
+      Number(
+        prices.filter((price) => price.id === Number(order.price))[0].value,
+      ) || 0
 
+    console.log(amount)
     if (!amount) {
       alert('결제 금액을 확인해주세요')
       return
@@ -96,16 +99,14 @@ const Payment: React.FC = () => {
   }
 
   const handlePayment = async () => {
-    const orderData = { ...order, gender: [order.gender], age: [order.age] }
     try {
       const res = await api({
         method: 'post',
         url: `/users/${id}/orders`,
         headers: header,
-        data: orderData,
+        data: order,
       })
       if (res.data.success) {
-        console.log(res.data.data.merchant_uid)
         handleIMP(res.data.data.merchant_uid)
       }
     } catch (e) {

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { css } from '@emotion/react'
+import qs from 'querystring'
 
 import { FlexCenter, FlexColCenter, FONT_SIZE_STYLE } from 'styles/GlobalStyles'
-
 import { RootState } from 'store/configureStore'
 import { setPageInfo } from 'store/actions/page'
-import axios from 'axios'
-import { BASE_URL } from 'config'
 import api from 'api'
 import ProductListView from './ProductListItem'
 import Payment from 'components/Payment'
@@ -21,17 +19,22 @@ const ProductInfo: React.FC = () => {
 
   useEffect(() => {
     const fetchGiftCandidate = async () => {
-      const url = `/products?price=${order.price}&age=${order.age}&gender=${order.gender}`
       try {
-        const res = await api.get(url, {
+        const res = await api.get(`/products`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
+          params: {
+            age: order.age,
+            gender: order.gender,
+            price: order.price,
+          },
+          paramsSerializer: (params) => {
+            return qs.stringify(params)
+          },
         })
         const data = res.data.data
-        console.log(data)
         setProductList([...data])
-        console.log(productList)
       } catch (e) {
         console.log(e)
       }
